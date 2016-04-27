@@ -3,6 +3,7 @@ executable("default") {
   deps = [
     "//top",
     "//arch/x86",
+    "//platform/pc",
     "//project:test",
   ]
 }
