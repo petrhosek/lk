@@ -40,12 +40,10 @@ config("compiler_defaults") {
       "TARGET=\"pc-x86\"",
       "SMP_MAX_CPUS=1",
       "IS_64BIT=1",
-      "MEMBASE=0", # TODO(smklein): FIX ALL DEFINES BELOW HERE
-      "MEMSIZE=0",
-      "KERNEL_ASPACE_BASE=0xffff000000000000",
-      "KERNEL_BASE=0xffffffff80000000",
       "WITH_KERNEL_VM=1",
     ]
+    defines += kernel_defines
+
     cflags += [
       "-fasynchronous-unwind-tables",
       "-gdwarf-2",

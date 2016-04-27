@@ -90,7 +90,7 @@ template("gcc_toolchain") {
     tool("link") {
       outfile = "{{target_output_name}}{{output_extension}}"
       rspfile = "$outfile.rsp"
-      command = "$ld {{ldflags}} -o $outfile -Wl,--start-group @$rspfile -Wl,--end-group {{libs}}"
+      command = "$ld {{ldflags}} -o $outfile --start-group @$rspfile --end-group {{libs}}"
       #command = "$ld {{ldflags}} -o $outfile -Wl,--start-group @$rspfile {{solibs}} -Wl,--end-group {{libs}}"
       description = "LINK $outfile"
       rspfile_content = "{{inputs}}"
@@ -133,7 +133,7 @@ gcc_toolchain("x64") {
   cxx = "${toolprefix}g++"
 
   ar = "${toolprefix}ar"
-  ld = cxx
+  ld = "${toolprefix}ld"
   #readelf = "${toolprefix}readelf"
   #nm = "nm"
 

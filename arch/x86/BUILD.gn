@@ -1,5 +1,6 @@
 config("x86_config") {
   visibility = [ ":*" ]
+  ldflags = [ "-T", rebase_path(root_gen_dir + "/kernel.ld")  ]
 }
 
 source_set("x86") {
@@ -26,5 +27,22 @@ source_set("x86") {
       "64/mmu.c",
       "64/ops.S",
     ]
+
+    deps = [
+      ":generate_kernel_linker_script",
+    ]
   }
+}
+
+# TODO(smklein): This shouldn't be x86-64 specific
+action("generate_kernel_linker_script") {
+  script = "generate_kernel_ld.py"
+  sources = [ "64/kernel.ld" ]
+  outputs = [ "${root_gen_dir}/kernel.ld" ]
+
+  args = [ "--defines" ] + kernel_defines
+  args += [
+  "--infile", rebase_path("${root_out_dir}/../../arch/x86/64/kernel.ld"),
+  "--outfile", rebase_path("${root_gen_dir}/kernel.ld")
+  ]
 }
