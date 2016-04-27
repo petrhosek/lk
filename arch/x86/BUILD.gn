@@ -27,8 +27,4 @@ source_set("x86") {
       "64/ops.S",
     ]
   }
-
-  deps = [
-    "//kernel",
-  ]
 }
