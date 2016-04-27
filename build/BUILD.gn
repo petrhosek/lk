@@ -3,6 +3,7 @@
 # found in the LICENSE file.
 
 config("compiler_defaults") {
+  include_dirs = [ "//include" ]
   cflags = [
     "-g",
     "-finline",
@@ -48,7 +49,7 @@ config("compiler_defaults") {
     ldflags = [
       "-z", "max-page-size=4096"
     ]
-    include_dirs = [ "//arch/x86/include" ]
+    include_dirs += [ "//arch/x86/include" ]
   }
 }
 

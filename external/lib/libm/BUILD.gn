@@ -6,7 +6,6 @@ source_set("libm") {
   ]
   include_dirs = [
     "include",
-    "//include",
     "//lib/libc/include",
   ]
   sources = [

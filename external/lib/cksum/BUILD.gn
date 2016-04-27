@@ -6,7 +6,6 @@ source_set("cksum") {
     "debug.c",
   ]
   include_dirs = [
-    "//include",
     "//lib/libc/include",
   ]
   cflags = [

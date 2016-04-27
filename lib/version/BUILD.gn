@@ -6,7 +6,6 @@ action("generate_buildid") {
 
 source_set("version") {
   include_dirs = [
-    "//include",
     "//lib/io/include",
     "//lib/libc/include",
     "//lib/version/include",

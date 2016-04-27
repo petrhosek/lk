@@ -6,7 +6,6 @@ config("console_config") {
 source_set("console") {
   all_dependent_configs = [ ":console_config" ]
   include_dirs = [
-    "//include",
     "//lib/heap/include",
     "//lib/io/include",
     "//lib/libc/include",

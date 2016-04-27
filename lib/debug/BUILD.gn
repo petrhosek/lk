@@ -1,6 +1,5 @@
 source_set("debug") {
   include_dirs = [
-    "//include",
     "//lib/heap/include",
     "//lib/io/include",
     "//lib/libc/include",
