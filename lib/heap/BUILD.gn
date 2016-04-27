@@ -9,6 +9,9 @@ source_set("heap") {
     "//lib/io/include",
     "//lib/libc/include"
   ]
+  defines = [
+    "WITH_LIB_HEAP_MINIHEAP",
+  ]
   sources = [
     "heap_wrapper.c",
     "new.cpp",
