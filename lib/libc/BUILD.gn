@@ -21,6 +21,7 @@ source_set("libc") {
     "pure_virtual.cpp",
   ]
   deps = [
+    "//lib/libc/string",
     "//lib/heap",
     "//lib/io",
   ]

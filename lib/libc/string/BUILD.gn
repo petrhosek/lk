@@ -1,0 +1,39 @@
+source_set("string") {
+  sources = [
+    "bcopy.c",
+    "bzero.c",
+    "memchr.c",
+    "memcmp.c",
+    "memcpy.c",
+    "memmove.c",
+    "memset.c",
+    "strcat.c",
+    "strchr.c",
+    "strcmp.c",
+    "strcoll.c",
+    "strcpy.c",
+    "strdup.c",
+    "strerror.c",
+    "strlcat.c",
+    "strlcpy.c",
+    "strlen.c",
+    "strncat.c",
+    "strncpy.c",
+    "strncmp.c",
+    "strnicmp.c",
+    "strnlen.c",
+    "strpbrk.c",
+    "strrchr.c",
+    "strspn.c",
+    "strstr.c",
+    "strtok.c",
+    "strxfrm.c",
+  ]
+
+  include_dirs = [
+    "//lib/libc/include",
+    "//lib/heap/include",
+  ]
+
+  #TODO(smklein): Include arch-specific string routines
+}
