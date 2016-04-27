@@ -1,0 +1,25 @@
+source_set("pc") {
+  sources = [
+    "interrupts.c",
+    "platform.c",
+    "timer.c",
+    "debug.c",
+    "console.c",
+    "keyboard.c",
+    "pci.c",
+    "ide.c",
+    "uart.c",
+  ]
+
+  include_dirs = [
+    "//lib/cbuf/include",
+    "//lib/heap/include",
+    "//lib/io/include",
+    "//lib/libc/include",
+    "//platform/pc/include",
+  ]
+
+  deps = [
+    "//lib/cbuf",
+  ]
+}

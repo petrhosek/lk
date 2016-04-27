@@ -1,0 +1,11 @@
+source_set("cbuf") {
+  sources = [
+    "cbuf.c",
+  ]
+  include_dirs = [
+    "//lib/cbuf/include",
+    "//lib/heap/include",
+    "//lib/io/include",
+    "//lib/libc/include",
+  ]
+}
