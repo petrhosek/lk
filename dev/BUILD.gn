@@ -8,6 +8,11 @@ config("dev_config") {
 
 source_set("dev") {
   all_dependent_configs = [ ":dev_config" ]
+  include_dirs = [
+    "//lib/heap/include",
+    "//lib/io/include",
+    "//lib/libc/include"
+  ]
   sources = [
     "dev.c",
     "driver.c",

@@ -5,6 +5,10 @@ config("heap_config") {
 
 source_set("heap") {
   all_dependent_configs = [ ":heap_config" ]
+  include_dirs = [
+    "//lib/io/include",
+    "//lib/libc/include"
+  ]
   sources = [
     "heap_wrapper.c",
     "new.cpp",
