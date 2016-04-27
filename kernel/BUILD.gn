@@ -1,4 +1,13 @@
+config("kernel_config") {
+  visibility = [ ":*" ]
+  include_dirs = [
+    "//lib/io/include",
+    "//lib/libc/include",
+  ]
+}
+
 source_set("kernel") {
+  all_dependent_configs = [ ":kernel_config" ]
   sources = [
     "debug.c",
     "event.c",

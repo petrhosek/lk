@@ -1,4 +1,12 @@
+config("libc_config") {
+  visibility = [ ":*" ]
+  include_dirs = [
+    "//lib/libc/include",
+  ]
+}
+
 source_set("libc") {
+  all_dependent_configs = [ ":libc_config" ]
   sources = [
     "atoi.c",
     "bsearch.c",
