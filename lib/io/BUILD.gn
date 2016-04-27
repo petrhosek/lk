@@ -1,4 +1,14 @@
+config("io_config") {
+  visibility = [ ":*" ]
+  include_dirs = [ "include" ]
+}
+
 source_set("io") {
+  all_dependent_configs = [ ":io_config" ]
+  include_dirs = [
+    "//lib/heap/include",
+    "//lib/libc/include"
+  ]
   sources = [
     "console.c",
     "io.c",

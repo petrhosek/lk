@@ -5,6 +5,13 @@ config("heap_config") {
 
 source_set("heap") {
   all_dependent_configs = [ ":heap_config" ]
+  include_dirs = [
+    "//lib/io/include",
+    "//lib/libc/include"
+  ]
+  defines = [
+    "WITH_LIB_HEAP_MINIHEAP",
+  ]
   sources = [
     "heap_wrapper.c",
     "new.cpp",

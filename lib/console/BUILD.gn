@@ -5,13 +5,9 @@ config("console_config") {
 
 source_set("console") {
   all_dependent_configs = [ ":console_config" ]
-  include_dirs = [
-    "//lib/heap/include",
-    "//lib/io/include",
-    "//lib/libc/include",
-  ]
   defines = [ "WITH_LIB_CONSOLE" ]
   sources = [
     "console.c",
   ]
+  deps = [ "//lib/libc" ]
 }
