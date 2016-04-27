@@ -7,6 +7,12 @@ config("libc_config") {
 
 source_set("libc") {
   all_dependent_configs = [ ":libc_config" ]
+  include_dirs = [
+    "include",
+    "//lib/heap/include",
+    "//lib/io/include",
+  ]
+
   sources = [
     "atoi.c",
     "bsearch.c",
