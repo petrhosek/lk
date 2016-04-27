@@ -1,8 +1,8 @@
 config("dev_config") {
   visibility = [ ":*" ]
   ldflags = [
-    "-T" + rebase_path("devices.ld", root_out_dir),
-    "-T" + rebase_path("drivers.ld", root_out_dir),
+    "-T", rebase_path("devices.ld", root_out_dir),
+    "-T", rebase_path("drivers.ld", root_out_dir),
   ]
 }
 

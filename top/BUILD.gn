@@ -1,6 +1,6 @@
 config("top_config") {
   visibility = [ ":*" ]
-  ldflags = [ "-T" + rebase_path("init.ld", root_out_dir) ]
+  ldflags = [ "-T", rebase_path("init.ld", root_out_dir) ]
 }
 
 source_set("top") {
