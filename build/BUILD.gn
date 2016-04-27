@@ -44,6 +44,7 @@ config("compiler_defaults") {
       "MEMSIZE=0",
       "KERNEL_ASPACE_BASE=0xffff000000000000",
       "KERNEL_BASE=0xffffffff80000000",
+      "WITH_KERNEL_VM=1",
     ]
     cflags += [
       "-fasynchronous-unwind-tables",

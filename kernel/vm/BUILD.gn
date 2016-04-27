@@ -1,8 +1,13 @@
 source_set("vm") {
+  include_dirs = [
+    "//lib/heap/include",
+    "//lib/io/include",
+    "//lib/libc/include",
+  ]
   sources = [
     "bootalloc.c",
-	  "pmm.c",
-	  "vm.c",
-	  "vmm.c",
+    "pmm.c",
+    "vm.c",
+    "vmm.c",
   ]
 }
