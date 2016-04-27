@@ -4,5 +4,6 @@ executable("default") {
     "//top",
     "//arch/x86",
     "//project:pc-x86-64-test",
+    "//platform/pc"
   ]
 }
