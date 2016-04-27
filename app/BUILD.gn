@@ -1,0 +1,14 @@
+config("app_config") {
+  ldflags = [ "-T" + rebase_path("app.ld", root_out_dir) ]
+}
+
+source_set("app") {
+  sources = [ "app.c" ]
+  include_dirs = [
+    "//include",
+    "//lib/io/include",
+    "//lib/heap/include",
+    "//lib/libc/include",
+  ]
+  all_dependent_configs = [ ":app_config" ]
+}

@@ -1,0 +1,13 @@
+group("test") {
+  deps = [
+    "//app/shell",
+    "//app/stringtests",
+    "//app/tests",
+    "//external/lib/aes",
+    #"//external/lib/aes/test",
+    "//external/lib/cksum",
+    "//lib/debugcommands",
+    "//external/lib/libm",
+    "//lib/version",
+  ]
+}

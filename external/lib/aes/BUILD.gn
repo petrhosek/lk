@@ -1,0 +1,9 @@
+source_set("aes") {
+  include_dirs = [
+    "include",
+    "//lib/libc/include",
+  ]
+  sources = [
+    "aes_core.c",
+  ]
+}

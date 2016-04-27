@@ -1,0 +1,13 @@
+source_set("top") {
+	sources = [
+		"init.c",
+		"main.c",
+	]
+	deps = [
+		"//app",
+		"//dev",
+		"//kernel",
+		"//platform",
+		"//target",
+	]
+}

@@ -1,0 +1,3 @@
+source_set("novm") {
+	sources = [ "novm.c" ]
+}

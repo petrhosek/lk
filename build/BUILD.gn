@@ -1,0 +1,59 @@
+# Copyright 2016 The Chromium Authors. All rights reserved.
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+config("compiler_defaults") {
+  cflags = [
+    "-g",
+    "-finline",
+    "-W",
+    "-Wall",
+    "-Wno-multichar",
+    "-Wno-unused-parameter",
+    "-Wno-unused-function",
+    "-Wno-unused-label",
+    "-Werror=return-type",
+  ]
+  cflags_c = [
+    "--std=gnu11",
+    "-Werror-implicit-function-declaration",
+    "-Wstrict-prototypes",
+    "-Wwrite-strings",
+  ]
+  cflags_cc = [
+    "--std=c++11",
+    "-fno-exceptions",
+    "-fno-rtti",
+    "-fno-threadsafe-statics",
+  ]
+  asmflags = [
+    "-DASSEMBLY",
+  ]
+  if (target_cpu == "x64") {
+    defines = [
+      "ARCH_X86_64=1",
+      "ARCH=\"x86\"",
+      "PLATFORM=\"X86_64\"",
+      "PROJECT=\"pc-x86-64-test\"",
+      "TARGET=\"pc-x86\"",
+    ]
+    cflags += [
+      "-fasynchronous-unwind-tables",
+      "-gdwarf-2",
+      "-fno-pic",
+    ]
+    cflags_c += [
+      "-fno-stack-protector",
+    ]
+    ldflags = [
+      "-z", "max-page-size=4096"
+    ]
+    include_dirs = [ "//arch/x86/include" ]
+  }
+}
+
+config("executable_ldconfig") {
+  ldflags = [
+    "-nostdlib"
+  ]
+}

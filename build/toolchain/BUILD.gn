@@ -1,0 +1,141 @@
+# Copyright 2016 The Chromium Authors. All rights reserved.
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+template("gcc_toolchain") {
+  toolchain(target_name) {
+    assert(defined(invoker.cc), "gcc_toolchain() must specify a \"cc\" value")
+    assert(defined(invoker.cxx), "gcc_toolchain() must specify a \"cxx\" value")
+    assert(defined(invoker.ar), "gcc_toolchain() must specify a \"ar\" value")
+    assert(defined(invoker.ld), "gcc_toolchain() must specify a \"ld\" value")
+    #assert(defined(invoker.toolchain_cpu),
+    #       "gcc_toolchain() must specify a \"toolchain_cpu\"")
+    #assert(defined(invoker.toolchain_os),
+    #       "gcc_toolchain() must specify a \"toolchain_os\"")
+
+    forward_variables_from(invoker,
+                           [
+                             "cc",
+                             "cxx",
+                             "ar",
+                             "ld",
+                             "readelf",
+                             "nm",
+                           ])
+
+    tool("cc") {
+      depfile = "{{output}}.d"
+      command = "$cc -MMD -MF $depfile {{defines}} {{include_dirs}} {{cflags}} {{cflags_c}} -c {{source}} -o {{output}}"
+      depsformat = "gcc"
+      description = "CC {{output}}"
+      outputs = [
+        "{{source_out_dir}}/{{target_output_name}}.{{source_name_part}}.o",
+      ]
+    }
+
+    tool("cxx") {
+      depfile = "{{output}}.d"
+      command = "$cxx -MMD -MF $depfile {{defines}} {{include_dirs}} {{cflags}} {{cflags_cc}} -c {{source}} -o {{output}}"
+      depsformat = "gcc"
+      description = "CXX {{output}}"
+      outputs = [
+        "{{source_out_dir}}/{{target_output_name}}.{{source_name_part}}.o",
+      ]
+    }
+
+    tool("asm") {
+      depfile = "{{output}}.d"
+      command = "$cc -MMD -MF $depfile {{defines}} {{include_dirs}} {{asmflags}} -c {{source}} -o {{output}}"
+      depsformat = "gcc"
+      description = "ASM {{output}}"
+      outputs = [
+        "{{source_out_dir}}/{{source_name_part}}.o",
+      ]
+    }
+
+    tool("alink") {
+      rspfile = "{{output}}.rsp"
+      command = "rm -f {{output}} && $ar rcs {{output}} @$rspfile"
+      description = "AR {{target_output_name}}{{output_extension}}"
+      rspfile_content = "{{inputs}}"
+      outputs = [
+        "{{target_out_dir}}/{{target_output_name}}{{output_extension}}",
+      ]
+      default_output_extension = ".a"
+      output_prefix = "lib"
+    }
+
+    #tool("solink") {
+    #  soname = "{{target_output_name}}{{output_extension}}"  # e.g. "libfoo.so".
+    #  rspfile = soname + ".rsp"
+
+    #  command = "$ld -shared {{ldflags}} -o $soname -Wl,-soname=$soname @$rspfile"
+    #  rspfile_content = "-Wl,--whole-archive {{inputs}} {{solibs}} -Wl,--no-whole-archive {{libs}}"
+
+    #  description = "SOLINK $soname"
+
+    #  # Use this for {{output_extension}} expansions unless a target manually
+    #  # overrides it (in which case {{output_extension}} will be what the target
+    #  # specifies).
+    #  default_output_extension = ".so"
+
+    #  outputs = [
+    #    soname,
+    #  ]
+    #  link_output = soname
+    #  depend_output = soname
+    #  output_prefix = "lib"
+    #}
+
+    tool("link") {
+      outfile = "{{target_output_name}}{{output_extension}}"
+      rspfile = "$outfile.rsp"
+      command = "$ld {{ldflags}} -o $outfile -Wl,--start-group @$rspfile -Wl,--end-group {{libs}}"
+      #command = "$ld {{ldflags}} -o $outfile -Wl,--start-group @$rspfile {{solibs}} -Wl,--end-group {{libs}}"
+      description = "LINK $outfile"
+      rspfile_content = "{{inputs}}"
+      default_output_extension = ".elf"
+      outputs = [
+        outfile,
+      ]
+    }
+
+    tool("stamp") {
+      command = "touch {{output}}"
+      description = "STAMP {{output}}"
+    }
+
+    tool("copy") {
+      command = "cp -af {{source}} {{output}}"
+      description = "COPY {{source}} {{output}}"
+    }
+  }
+}
+
+gcc_toolchain("arm64") {
+  toolprefix = "aarch64-elf-"
+
+  cc = "${toolprefix}gcc"
+  cxx = "${toolprefix}g++"
+
+  ar = "${toolprefix}ar"
+  ld = cxx
+  #readelf = "${toolprefix}readelf"
+  #nm = "${toolprefix}nm"
+
+  #toolchain_cpu = "arm64"
+}
+
+gcc_toolchain("x64") {
+  toolprefix = "x86_64-elf-"
+
+  cc = "${toolprefix}gcc"
+  cxx = "${toolprefix}g++"
+
+  ar = "${toolprefix}ar"
+  ld = cxx
+  #readelf = "${toolprefix}readelf"
+  #nm = "nm"
+
+  #toolchain_cpu = "x64"
+}

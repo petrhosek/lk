@@ -1,0 +1,8 @@
+source_set("vm") {
+  sources = [
+    "bootalloc.c",
+	  "pmm.c",
+	  "vm.c",
+	  "vmm.c",
+  ]
+}

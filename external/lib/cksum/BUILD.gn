@@ -1,0 +1,15 @@
+source_set("cksum") {
+  sources = [
+    "adler32.c",
+    "crc16.c",
+    "crc32.c",
+    "debug.c",
+  ]
+  include_dirs = [
+    "//include",
+    "//lib/libc/include",
+  ]
+  cflags = [
+    "-Wno-strict-prototypes"
+  ]
+}

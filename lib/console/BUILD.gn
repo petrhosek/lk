@@ -1,0 +1,15 @@
+source_set("console") {
+  include_dirs = [
+    "//include",
+    "//lib/heap/include",
+    "//lib/io/include",
+    "//lib/libc/include",
+  ]
+  defines = [
+    "WITH_LIB_CONSOLE",
+  ]
+  sources = [
+    "console.c"
+  ]
+  # linker_script = "console.ld"
+}

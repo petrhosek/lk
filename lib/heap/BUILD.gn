@@ -1,0 +1,16 @@
+config("heap_config") {
+  visibility = [ ":*" ]
+  include_dirs = [ "include" ]
+}
+
+source_set("heap") {
+  all_dependent_configs = [ ":heap_config" ]
+  sources = [
+    "heap_wrapper.c",
+    "new.cpp",
+    "page_alloc.c",
+  ]
+  deps = [
+    "//lib/heap/miniheap",
+  ]
+}

@@ -1,0 +1,9 @@
+source_set("shell") {
+  sources = [ "shell.c" ]
+  include_dirs = [
+    "//include",
+    "//lib/io/include",
+    "//lib/libc/include",
+  ]
+  deps = [ "//lib/console" ]
+}

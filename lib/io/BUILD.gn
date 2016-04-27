@@ -1,0 +1,6 @@
+source_set("io") {
+  sources = [
+    "console.c",
+    "io.c",
+  ]
+}

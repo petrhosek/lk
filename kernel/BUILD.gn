@@ -1,0 +1,23 @@
+source_set("kernel") {
+  sources = [
+    "debug.c",
+    "event.c",
+    "init.c",
+    "mutex.c",
+    "thread.c",
+    "timer.c",
+    "semaphore.c",
+    "mp.c",
+    "port.c",
+  ]
+  deps = [
+    "//lib/libc",
+    "//lib/debug",
+    "//lib/heap",
+  ]
+  if (with_kernel_vm) {
+    deps += [ "//kernel/vm" ]
+  } else {
+    deps += [ "//kernel/novm" ]
+  }
+}

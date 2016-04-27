@@ -1,0 +1,21 @@
+source_set("libc") {
+	sources = [
+		"atoi.c",
+		"bsearch.c",
+		"ctype.c",
+		"errno.c",
+		"printf.c",
+		"rand.c",
+		"strtol.c",
+		"strtoll.c",
+		"stdio.c",
+		"qsort.c",
+		"eabi.c",
+		"atexit.c",
+		"pure_virtual.cpp",
+	]
+	deps = [
+		"//lib/heap",
+		"//lib/io",
+	]
+}
