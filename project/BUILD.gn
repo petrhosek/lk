@@ -1,6 +1,5 @@
-group("test") {
+group("pc-x86-64-test") {
   deps = [
-    "//app",
     "//app/shell",
     "//project/virtual:test",
   ]
