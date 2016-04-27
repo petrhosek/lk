@@ -4,9 +4,6 @@ config("dev_config") {
     "-T" + rebase_path("devices.ld", root_out_dir),
     "-T" + rebase_path("drivers.ld", root_out_dir),
   ]
-  include_dirs = [
-    "//lib/libc/include",
-  ]
 }
 
 source_set("dev") {

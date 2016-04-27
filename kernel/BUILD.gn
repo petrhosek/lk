@@ -1,13 +1,9 @@
-config("kernel_config") {
-  visibility = [ ":*" ]
+source_set("kernel") {
   include_dirs = [
+    "//lib/heap/include",
     "//lib/io/include",
     "//lib/libc/include",
   ]
-}
-
-source_set("kernel") {
-  all_dependent_configs = [ ":kernel_config" ]
   sources = [
     "debug.c",
     "event.c",

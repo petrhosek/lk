@@ -1,4 +1,9 @@
 source_set("target") {
+  include_dirs = [
+    "//lib/heap/include",
+    "//lib/io/include",
+    "//lib/libc/include",
+  ]
   sources = [
     "init.c",
   ]
