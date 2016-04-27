@@ -38,8 +38,11 @@ config("compiler_defaults") {
       "PROJECT=\"pc-x86-64-test\"",
       "TARGET=\"pc-x86\"",
       "SMP_MAX_CPUS=1",
-      "MEMBASE=0", # TODO(smklein): Fix MEM* variables
+      "IS_64BIT=1",
+      "MEMBASE=0", # TODO(smklein): FIX ALL DEFINES BELOW HERE
       "MEMSIZE=0",
+      "KERNEL_ASPACE_BASE=0xffff000000000000",
+      "KERNEL_BASE=0xffffffff80000000",
     ]
     cflags += [
       "-fasynchronous-unwind-tables",
