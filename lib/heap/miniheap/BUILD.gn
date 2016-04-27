@@ -5,6 +5,11 @@ config("miniheap_config") {
 
 source_set("miniheap") {
   all_dependent_configs = [ ":miniheap_config" ]
+  include_dirs = [
+    "//lib/heap/include",
+    "//lib/io/include",
+    "//lib/libc/include",
+  ]
   sources = [
     "miniheap.c",
   ]

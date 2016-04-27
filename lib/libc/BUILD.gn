@@ -1,4 +1,9 @@
 source_set("libc") {
+  include_dirs = [
+    "include",
+    "//lib/heap/include",
+    "//lib/io/include",
+  ]
   sources = [
     "atoi.c",
     "bsearch.c",
