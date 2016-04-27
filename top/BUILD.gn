@@ -1,13 +1,19 @@
+config("top_config") {
+  visibility = [ ":*" ]
+  ldflags = [ "-T" + rebase_path("init.ld", root_out_dir) ]
+}
+
 source_set("top") {
-	sources = [
-		"init.c",
-		"main.c",
-	]
-	deps = [
-		"//app",
-		"//dev",
-		"//kernel",
-		"//platform",
-		"//target",
-	]
+  all_dependent_configs = [ ":top_config" ]
+  sources = [
+    "init.c",
+    "main.c",
+  ]
+  deps = [
+    "//app",
+    "//dev",
+    "//kernel",
+    "//platform",
+    "//target",
+  ]
 }

@@ -1,0 +1,7 @@
+source_set("platform") {
+  sources = [
+    "debug.c",
+    "init.c",
+    "power.c"
+  ]
+}

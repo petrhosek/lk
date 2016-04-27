@@ -1,0 +1,5 @@
+source_set("target") {
+  sources = [
+    "init.c",
+  ]
+}

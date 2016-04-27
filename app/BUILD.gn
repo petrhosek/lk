@@ -1,4 +1,5 @@
 config("app_config") {
+  visibility = [ ":*" ]
   ldflags = [ "-T" + rebase_path("app.ld", root_out_dir) ]
 }
 

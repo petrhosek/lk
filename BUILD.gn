@@ -1,6 +1,7 @@
 # This target will be built if no target is specified when invoking ninja.
 executable("default") {
   deps = [
+    "//top",
     "//project:test",
   ]
 }
