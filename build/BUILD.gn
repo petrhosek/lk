@@ -39,8 +39,9 @@ config("compiler_defaults") {
       "PROJECT=\"pc-x86-64-test\"",
       "TARGET=\"pc-x86\"",
       "SMP_MAX_CPUS=1",
-      "IS_64BIT=1",
-      "WITH_KERNEL_VM=1",
+      "IS_64BIT",
+      "WITH_KERNEL_VM",
+      "X86_WITH_FPU",
     ]
     defines += kernel_defines
 
