@@ -16,7 +16,11 @@ if (current_os == "") {
 }
 
 # TODO(smklein): Move default args to a separate file
-with_kernel_vm = false
+if (target_cpu == "x64") {
+  with_kernel_vm = true
+} else {
+  with_kernel_vm = false
+}
 
 # All binary targets will get this list of configs by default.
 _shared_binary_target_configs = [ "//build:compiler_defaults" ]
