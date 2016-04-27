@@ -1,0 +1,30 @@
+config("x86_config") {
+  visibility = [ ":*" ]
+}
+
+source_set("x86") {
+  all_dependent_configs = [ ":x86_config" ]
+  include_dirs = [
+    "//lib/heap/include",
+    "//lib/io/include",
+    "//lib/libc/include",
+  ]
+  sources = [
+    "arch.c",
+    "cache.c",
+    "gdt.S",
+    "thread.c",
+    "faults.c",
+    "descriptor.c",
+    "fpu.c",
+  ]
+  if (target_cpu == "x64") {
+    sources += [
+      "64/start.S",
+      "64/asm.S",
+      "64/exceptions.S",
+      "64/mmu.c",
+      "64/ops.S",
+    ]
+  }
+}
