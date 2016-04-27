@@ -5,6 +5,7 @@
 config("compiler_defaults") {
   include_dirs = [ "//include" ]
   cflags = [
+    "-O2",
     "-g",
     "-finline",
     "-W",
@@ -48,6 +49,7 @@ config("compiler_defaults") {
       "-fasynchronous-unwind-tables",
       "-gdwarf-2",
       "-fno-pic",
+      "-mcmodel=kernel",
     ]
     cflags_c += [
       "-fno-stack-protector",
