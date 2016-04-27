@@ -37,6 +37,7 @@ config("compiler_defaults") {
       "PLATFORM=\"X86_64\"",
       "PROJECT=\"pc-x86-64-test\"",
       "TARGET=\"pc-x86\"",
+      "SMP_MAX_CPUS=1",
     ]
     cflags += [
       "-fasynchronous-unwind-tables",
