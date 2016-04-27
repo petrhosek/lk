@@ -54,7 +54,7 @@ config("compiler_defaults") {
       "-fno-stack-protector",
     ]
     ldflags = [
-      "-z", "max-page-size=4096"
+      "-z", "max-page-size=4096",
     ]
     include_dirs += [ "//arch/x86/include" ]
   }
