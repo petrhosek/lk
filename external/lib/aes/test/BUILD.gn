@@ -4,6 +4,7 @@ source_set("test") {
   ]
   include_dirs = [
     "//external/lib/aes/include",
+    "//lib/heap/include",
     "//lib/io/include",
     "//lib/libc/include",
   ]

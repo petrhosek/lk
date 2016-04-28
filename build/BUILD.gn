@@ -40,17 +40,27 @@ config("compiler_defaults") {
   if (target_cpu == "x64") {
     defines += [
       "ARCH_X86_64=1",
+      "IS_64BIT=1",
       "ARCH=\"x86\"",
       "PLATFORM=\"X86_64\"",
+      "PLATFORM_HAS_DYNAMIC_TIMER=1",
       "PROJECT=\"pc-x86-64-test\"",
       "TARGET=\"pc-x86\"",
-      "SMP_MAX_CPUS=1",
-      "IS_64BIT",
       "X86_WITH_FPU",
     ]
     if (with_kernel_vm) {
       defines += [
-        "WITH_KERNEL_VM",
+        "WITH_KERNEL_VM=1",
+      ]
+    }
+    if (with_smp) {
+      defines += [
+        "WITH_SMP=1",
+        "SMP_MAX_CPUS=16",
+      ]
+    } else {
+      defines += [
+        "SMP_MAX_CPUS=1",
       ]
     }
     cflags += [
