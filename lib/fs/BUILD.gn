@@ -1,0 +1,21 @@
+config("fs_config") {
+  visibility = [ ":*" ]
+  include_dirs = [ "include" ]
+  ldflags = [ "-T", rebase_path("fs.ld", root_out_dir) ]
+}
+
+source_set("fs") {
+  all_dependent_configs = [ ":fs_config" ]
+  include_dirs = [
+    "//lib/bio/include",
+    "//lib/heap/include",
+    "//lib/io/include",
+    "//lib/libc/include",
+  ]
+
+  sources = [
+    "fs.c",
+    "debug.c",
+    "shell.c",
+  ]
+}

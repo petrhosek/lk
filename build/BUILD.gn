@@ -84,7 +84,7 @@ config("compiler_defaults") {
       ]
     } else {
       defines += [
-        "SMP_MAX_CPUS=1",
+        "WITH_SMP=0",
       ]
     }
     ldflags = [

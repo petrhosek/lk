@@ -17,6 +17,7 @@ source_set("qemu-virt") {
 
   deps = [
     "//lib/cbuf",
+    "//lib/fs",
     "//external/lib/fdt",
     "//dev/interrupt/arm_gic",
     "//dev/timer/arm_generic",
