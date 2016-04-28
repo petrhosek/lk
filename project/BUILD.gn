@@ -31,9 +31,9 @@ group("qemu-arm64") {
   # intel_hda_qemu_quirks = 1
   deps = [
     "//app/shell",
-    "//lib/debugcommands",
     "//project/virtual:test",
-    #"//project/virtual:user",
-    #"//project/target:qemu-virt-a53",
+    "//project/virtual:fs",
+    "//project/virtual:minip",
+#    "//project/target:qemu-virt-a53",
   ]
 }

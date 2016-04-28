@@ -1,0 +1,12 @@
+source_set("bcache") {
+  sources = [
+    "bcache.c",
+  ]
+  include_dirs = [
+    "//lib/bcache/include",
+  ]
+
+  deps = [
+    "//lib/bio",
+  ]
+}

@@ -1,0 +1,17 @@
+source_set("test") {
+  sources = [
+    "spifstest.c",
+  ]
+  include_dirs = [
+    "//external/lib/libm/include",
+    "//lib/bio/include",
+    "//lib/fs/include",
+    "//lib/heap/include",
+    "//lib/io/include",
+    "//lib/libc/include",
+  ]
+
+  deps = [
+    "//external/lib/libm",
+  ]
+}

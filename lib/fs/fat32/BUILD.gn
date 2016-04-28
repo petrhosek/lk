@@ -1,0 +1,15 @@
+source_set("fat32") {
+  sources = [
+    "fat.c",
+    "file.c",
+  ]
+  include_dirs = [
+    "//lib/bcache/include",
+  ]
+
+  deps = [
+    "//lib/fs",
+    "//lib/bcache",
+    "//lib/bio",
+  ]
+}

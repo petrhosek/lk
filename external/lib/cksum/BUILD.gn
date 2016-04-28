@@ -1,9 +1,10 @@
 source_set("cksum") {
   include_dirs = [
+    "//external/lib/cksum/include",
     "//lib/libc/include",
   ]
   cflags = [
-    "-Wno-strict-prototypes"
+    "-Wno-strict-prototypes",
   ]
   sources = [
     "adler32.c",

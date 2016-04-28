@@ -1,13 +1,33 @@
+# TODO(smklein): Ensure that "WITH_CPP_SUPPORT" is defined with test group
+
 group("test") {
   deps = [
     "//app/shell",
     "//app/stringtests",
     "//app/tests",
     "//external/lib/aes",
-    #"//external/lib/aes/test",
+    "//external/lib/aes/test",
     "//external/lib/cksum",
     "//lib/debugcommands",
     "//external/lib/libm",
     "//lib/version",
+  ]
+}
+
+group("fs") {
+  deps = [
+    "//lib/fs",
+    "//lib/fs/ext2",
+    "//lib/fs/fat32",
+    "//lib/fs/spifs",
+    "//lib/fs/spifs/test",
+    "//lib/fs/memfs",
+  ]
+}
+
+group("minip") {
+  deps = [
+    "//lib/minip",
+    "//app/inetsrv",
   ]
 }

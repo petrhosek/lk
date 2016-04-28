@@ -1,0 +1,15 @@
+source_set("inetsrv") {
+  sources = [
+    "inetsrv.c",
+  ]
+  include_dirs = [
+    "//external/lib/cksum/include",
+    "//lib/tftp/include",
+  ]
+
+  deps = [
+    "//external/lib/cksum",
+    "//lib/minip",
+    "//lib/tftp",
+  ]
+}

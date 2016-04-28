@@ -1,0 +1,12 @@
+source_set("tftp") {
+  sources = [
+    "tftp.c",
+  ]
+  include_dirs = [
+    "//lib/tftp/include",
+  ]
+
+  deps = [
+    "//lib/minip",
+  ]
+}

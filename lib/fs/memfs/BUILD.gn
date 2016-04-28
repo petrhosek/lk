@@ -1,0 +1,9 @@
+source_set("memfs") {
+  sources = [
+    "memfs.c",
+  ]
+
+  deps = [
+    "//lib/fs",
+  ]
+}

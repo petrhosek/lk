@@ -1,0 +1,17 @@
+source_set("ext2") {
+  sources = [
+    "ext2.c",
+    "dir.c",
+    "io.c",
+    "file.c",
+  ]
+  include_dirs = [
+    "//lib/bcache/include",
+  ]
+
+  deps = [
+    "//lib/fs",
+    "//lib/bcache",
+    "//lib/bio",
+  ]
+}

@@ -15,6 +15,7 @@ executable("kernel") {
   } else if (target_cpu == "arm64") {
     deps += [
       "//arch/arm64",
+      "//project:qemu-arm64",
       "//platform/qemu-virt",
     ]
   }

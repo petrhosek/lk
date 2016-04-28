@@ -1,0 +1,10 @@
+source_set("test") {
+  sources = [
+    "aes_test.c",
+  ]
+  include_dirs = [
+    "//external/lib/aes/include",
+    "//lib/io/include",
+    "//lib/libc/include",
+  ]
+}
