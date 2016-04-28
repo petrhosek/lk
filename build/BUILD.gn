@@ -7,14 +7,6 @@ config("compiler_defaults") {
   defines = [
       "LK=1",
       "LK_DEBUGLEVEL=2",
-
-#   XXX You don't have any apps to start, so your kernel doesn't start them.
-#       WHERE THE HELL ARE THESE DEFINES COMING FROM????????
-#      "WITH_APP=1",
-#      "WITH_APP_INETSRV=1",
-#      "WITH_APP_SHELL=1",
-#      "WITH_APP_STRINGTESTS=1",
-#      "WITH_APP_TESTS=1",
   ]
 
   cflags = [
