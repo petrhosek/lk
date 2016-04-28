@@ -99,6 +99,8 @@ config("compiler_defaults") {
     ]
     include_dirs += [ "//arch/arm64/include" ]
   }
+
+  defines += kernel_defines
 }
 
 config("executable_ldconfig") {
