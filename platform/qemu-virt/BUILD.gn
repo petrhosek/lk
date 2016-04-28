@@ -6,6 +6,7 @@ source_set("qemu-virt") {
     "//lib/io/include",
     "//lib/libc/include",
   ]
+  defines = kernel_defines
 
   sources = [
     "debug.c",
