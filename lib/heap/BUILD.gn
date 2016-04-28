@@ -19,16 +19,10 @@ source_set("heap") {
     ]
   }
   if (heap_implementation == "dlmalloc") {
-    defines = [
-      "WITH_LIB_HEAP_DLMALLOC",
-    ]
     deps = [
       "//external/lib/heap/dlmalloc",
     ]
   } else {
-    defines = [
-      "WITH_LIB_HEAP_MINIHEAP",
-    ]
     deps = [
       "//lib/heap/miniheap",
     ]
