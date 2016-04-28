@@ -19,6 +19,7 @@ source_set("qemu-virt") {
     "//lib/cbuf",
     "//lib/console",
     "//lib/fs",
+    "//lib/minip",
     "//external/lib/fdt",
     "//dev/interrupt/arm_gic",
     "//dev/timer/arm_generic",

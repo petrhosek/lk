@@ -15,7 +15,8 @@ source_set("version") {
     "version.c",
   ]
   deps = [
-    ":generate_buildid"
+    ":generate_buildid",
+    "//lib/console",
   ]
 
   # TODO: generate build id
