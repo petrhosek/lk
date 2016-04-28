@@ -7,4 +7,10 @@ source_set("test") {
     "//lib/io/include",
     "//lib/libc/include",
   ]
+
+  if (target_cpu == "x64") {
+    include_dirs += [
+      "//lib/heap/include",
+    ]
+  }
 }
