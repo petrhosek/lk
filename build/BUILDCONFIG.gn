@@ -22,7 +22,7 @@ with_cpp_support = false
 # TODO(smklein): Move default args to a separate file
 if (target_cpu == "x64") {
   with_kernel_vm = true
-  heap_implementation = "miniheap"
+  heap_implementation = "dlmalloc"
   kernel_defines = [
     "MEMBASE=0", # TODO(smklein): FIX ALL DEFINES BELOW HERE
     "MEMSIZE=0",
