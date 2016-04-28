@@ -12,11 +12,11 @@ source_set("pc") {
   ]
 
   include_dirs = [
+		"include",
     "//lib/cbuf/include",
     "//lib/heap/include",
     "//lib/io/include",
     "//lib/libc/include",
-    "//platform/pc/include",
   ]
 
   deps = [

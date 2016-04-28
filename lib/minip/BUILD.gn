@@ -1,0 +1,30 @@
+config("minip_config") {
+  visibility = [ ":*" ]
+  include_dirs = [ "include" ]
+}
+
+source_set("minip") {
+  all_dependent_configs = [ ":minip_config" ]
+  include_dirs = [
+    "include",
+    "//lib/heap/include",
+    "//lib/io/include",
+    "//lib/libc/include",
+  ]
+  sources = [
+    "arp.c",
+    "chksum.c",
+    "dhcp.c",
+    "lk_console.c",
+    "minip.c",
+    "net_timer.c",
+    "pktbuf.c",
+    "tcp.c",
+    "udp.c",
+  ]
+  deps = [
+    "//lib/cbuf",
+    "//lib/iovec",
+    "//lib/pool",
+  ]
+}

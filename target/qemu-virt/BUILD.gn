@@ -1,0 +1,8 @@
+config("qemu-virt_config") {
+  visibility = [ ":*" ]
+  include_dirs = [ "include" ]
+}
+
+group("qemu-virt") {
+  all_dependent_configs = [ ":qemu-virt_config" ]
+}

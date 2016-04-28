@@ -1,0 +1,21 @@
+config("arm_generic_config") {
+  visibility = [ ":*" ]
+  include_dirs = [ "include" ]
+}
+
+source_set("arm_generic") {
+  all_dependent_configs = [ ":arm_generic_config" ]
+  include_dirs = [
+    "//lib/io/include",
+    "//lib/libc/include",
+  ]
+  defines = [
+    "PLATFORM_HAS_DYNAMIC_TIMER",
+  ]
+  sources = [
+    "arm_generic_timer.c",
+  ]
+  deps = [
+    "//lib/fixed_point",
+  ]
+}

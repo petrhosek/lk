@@ -1,0 +1,27 @@
+source_set("qemu-virt") {
+  include_dirs = [
+    "include",
+    "//lib/cbuf/include",
+    "//lib/heap/include",
+    "//lib/io/include",
+    "//lib/libc/include",
+  ]
+
+  sources = [
+    "debug.c",
+    "platform.c",
+    "secondary_boot.S",
+    "uart.c",
+  ]
+
+  deps = [
+    "//lib/cbuf",
+    "//external/lib/fdt",
+    "//dev/interrupt/arm_gic",
+    "//dev/timer/arm_generic",
+    "//dev/virtio/block",
+    "//dev/virtio/gpu",
+    "//dev/virtio/net",
+    "//target/qemu-virt",
+  ]
+}

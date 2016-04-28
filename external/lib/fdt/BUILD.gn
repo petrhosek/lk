@@ -1,0 +1,25 @@
+config("fdt_config") {
+  visibility = [ ":*" ]
+  include_dirs = [ "include" ]
+}
+
+source_set("fdt") {
+  all_dependent_configs = [ ":fdt_config" ]
+  include_dirs = [
+    "include",
+    "//lib/libc/include",
+  ]
+  sources = [
+    "fdt.c",
+    "fdt_addresses.c",
+    "fdt_empty_tree.c",
+    "fdt_ro.c",
+    "fdt_rw.c",
+    "fdt_strerror.c",
+    "fdt_sw.c",
+    "fdt_wip.c",
+  ]
+  cflags = [
+    "-Wno-sign-compare",
+  ]
+}

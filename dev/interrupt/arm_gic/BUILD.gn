@@ -1,0 +1,17 @@
+config("arm_gic_config") {
+  visibility = [ ":*" ]
+  include_dirs = [ "include" ]
+}
+
+source_set("arm_gic") {
+  all_dependent_configs = [ ":arm_gic_config" ]
+  include_dirs = [
+    "include",
+    "//lib/io/include",
+    "//lib/libc/include",
+    "//platform/qemu-virt/include",
+  ]
+  sources = [
+    "arm_gic.c",
+  ]
+}

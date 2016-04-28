@@ -1,0 +1,10 @@
+source_set("gfx") {
+  include_dirs = [
+    "//lib/heap/include",
+    "//lib/io/include",
+    "//lib/libc/include",
+  ]
+  sources = [
+    "gfx.c",
+  ]
+}

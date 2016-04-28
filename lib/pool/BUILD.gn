@@ -1,0 +1,16 @@
+config("pool_config") {
+  visibility = [ ":*" ]
+  include_dirs = [ "include" ]
+}
+
+source_set("pool") {
+  all_dependent_configs = [ ":pool_config" ]
+  include_dirs = [
+    "include",
+    "//lib/io/include",
+    "//lib/libc/include",
+  ]
+  sources = [
+    "pool.c",
+  ]
+}

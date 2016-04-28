@@ -1,0 +1,15 @@
+source_set("gpu") {
+  include_dirs = [
+    "include",
+    "//lib/heap/include",
+    "//lib/io/include",
+    "//lib/libc/include",
+  ]
+  sources = [
+    "virtio-gpu.c",
+  ]
+  deps = [
+    "//dev/virtio",
+    "//lib/gfx",
+  ]
+}

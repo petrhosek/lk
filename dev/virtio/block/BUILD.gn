@@ -1,0 +1,15 @@
+source_set("block") {
+  include_dirs = [
+    "include",
+    "//lib/heap/include",
+    "//lib/io/include",
+    "//lib/libc/include",
+  ]
+  sources = [
+    "virtio-block.c",
+  ]
+  deps = [
+    "//dev/virtio",
+    "//lib/bio",
+  ]
+}
