@@ -3,7 +3,6 @@ source_set("inetsrv") {
     "inetsrv.c",
   ]
   include_dirs = [
-    "//external/lib/cksum/include",
     "//lib/tftp/include",
   ]
 

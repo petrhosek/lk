@@ -2,9 +2,6 @@ source_set("spifs") {
   sources = [
     "spifs.c",
   ]
-  include_dirs = [
-    "//external/lib/cksum/include",
-  ]
 
   deps = [
     "//lib/fs",

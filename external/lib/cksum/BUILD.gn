@@ -1,6 +1,11 @@
+config("cksum_config") {
+  visibility = [ ":*" ]
+  include_dirs = [ "include" ]
+}
+
 source_set("cksum") {
+  all_dependent_configs = [ ":cksum_config" ]
   include_dirs = [
-    "//external/lib/cksum/include",
     "//lib/libc/include",
   ]
   cflags = [
