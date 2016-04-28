@@ -11,6 +11,9 @@ source_set("bio") {
     "//lib/io/include",
     "//lib/libc/include",
   ]
+  cflags = [
+    "-Wno-sign-compare",
+  ]
   sources = [
     "bio.c",
     "debug.c",
