@@ -1,11 +1,11 @@
 config("console_config") {
   visibility = [ ":*" ]
   ldflags = [ "-T", rebase_path("console.ld", root_out_dir) ]
+  defines = [ "WITH_LIB_CONSOLE" ]
 }
 
 source_set("console") {
   all_dependent_configs = [ ":console_config" ]
-  defines = [ "WITH_LIB_CONSOLE" ]
   sources = [
     "console.c",
   ]
