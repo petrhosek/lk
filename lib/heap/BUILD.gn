@@ -9,15 +9,28 @@ source_set("heap") {
     "//lib/io/include",
     "//lib/libc/include"
   ]
-  defines = [
-    "WITH_LIB_HEAP_MINIHEAP",
-  ]
   sources = [
     "heap_wrapper.c",
-    "new.cpp",
     "page_alloc.c",
   ]
-  deps = [
-    "//lib/heap/miniheap",
-  ]
+  if (with_cpp_support) {
+    sources += [
+      "new.cpp",
+    ]
+  }
+  if (heap_implementation == "dlmalloc") {
+    defines = [
+      "WITH_LIB_HEAP_DLMALLOC",
+    ]
+    deps = [
+      "//external/lib/heap/dlmalloc",
+    ]
+  } else {
+    defines = [
+      "WITH_LIB_HEAP_MINIHEAP",
+    ]
+    deps = [
+      "//lib/heap/miniheap",
+    ]
+  }
 }

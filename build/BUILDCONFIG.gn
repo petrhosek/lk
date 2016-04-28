@@ -17,10 +17,12 @@ if (current_os == "") {
 
 with_smp = false
 with_kernel_vm = true
+with_cpp_support = false
 
 # TODO(smklein): Move default args to a separate file
 if (target_cpu == "x64") {
   with_kernel_vm = true
+  heap_implementation = "dlmalloc"
   kernel_defines = [
     "MEMBASE=0", # TODO(smklein): FIX ALL DEFINES BELOW HERE
     "MEMSIZE=0",
@@ -31,6 +33,7 @@ if (target_cpu == "x64") {
 } else if (target_cpu == "arm64") {
   with_kernel_vm = true
   with_smp = true
+  heap_implementation = "dlmalloc"
   kernel_defines = [
     "MEMBASE=0x40000000", # TODO(phosek): FIX ALL DEFINES BELOW HERE
     "MEMSIZE=0x08000000",
