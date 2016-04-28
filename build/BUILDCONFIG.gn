@@ -49,4 +49,5 @@ set_defaults("source_set") {
   configs = _shared_binary_target_configs
 }
 
-set_default_toolchain("//build/toolchain:x64")
+host_toolchain = "//build/toolchain:x64"
+set_default_toolchain(host_toolchain)

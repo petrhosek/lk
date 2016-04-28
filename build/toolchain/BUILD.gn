@@ -2,6 +2,8 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
+import("//build/config.gni")
+
 template("gcc_toolchain") {
   toolchain(target_name) {
     assert(defined(invoker.cc), "gcc_toolchain() must specify a \"cc\" value")
@@ -113,8 +115,6 @@ template("gcc_toolchain") {
 }
 
 gcc_toolchain("arm64") {
-  toolprefix = "aarch64-elf-"
-
   cc = "${toolprefix}gcc"
   cxx = "${toolprefix}g++"
 
@@ -127,8 +127,6 @@ gcc_toolchain("arm64") {
 }
 
 gcc_toolchain("x64") {
-  toolprefix = "x86_64-elf-"
-
   cc = "${toolprefix}gcc"
   cxx = "${toolprefix}g++"
 
