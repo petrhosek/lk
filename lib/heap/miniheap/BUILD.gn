@@ -1,6 +1,7 @@
 config("miniheap_config") {
   visibility = [ ":*" ]
   include_dirs = [ "include" ]
+  defines = [ "WITH_LIB_HEAP_MINIHEAP" ]
 }
 
 source_set("miniheap") {

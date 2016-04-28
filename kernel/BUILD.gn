@@ -16,9 +16,10 @@ source_set("kernel") {
     "port.c",
   ]
   deps = [
-    "//lib/libc",
     "//lib/debug",
+    "//lib/console",
     "//lib/heap",
+    "//lib/libc",
   ]
   if (with_kernel_vm) {
     deps += [ "//kernel/vm" ]

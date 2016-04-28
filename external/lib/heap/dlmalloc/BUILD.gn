@@ -1,6 +1,7 @@
 config("dlmalloc_config") {
   visibility = [ ":*" ]
   include_dirs = [ "include" ]
+  defines = [ "WITH_LIB_HEAP_DLMALLOC" ]
 }
 
 source_set("dlmalloc") {

@@ -24,6 +24,7 @@ source_set("minip") {
   ]
   deps = [
     "//lib/cbuf",
+    "//lib/console",
     "//lib/iovec",
     "//lib/pool",
   ]

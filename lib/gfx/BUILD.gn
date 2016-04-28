@@ -7,4 +7,7 @@ source_set("gfx") {
   sources = [
     "gfx.c",
   ]
+  deps = [
+    "//lib/console",
+  ]
 }

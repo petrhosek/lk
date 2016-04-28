@@ -17,4 +17,7 @@ source_set("bio") {
     "mem.c",
     "subdev.c",
   ]
+  deps = [
+    "//lib/console",
+  ]
 }

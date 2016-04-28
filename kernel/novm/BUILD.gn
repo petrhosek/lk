@@ -5,4 +5,7 @@ source_set("novm") {
     "//lib/libc/include",
   ]
   sources = [ "novm.c" ]
+  deps = [
+    "//lib/console",
+  ]
 }

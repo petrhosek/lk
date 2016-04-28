@@ -15,4 +15,7 @@ source_set("arm_gic") {
   sources = [
     "arm_gic.c",
   ]
+  deps = [
+    "//lib/console",
+  ]
 }
