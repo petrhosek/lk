@@ -1,11 +1,16 @@
+config("libm_config") {
+  visibility = [ ":*" ]
+  include_dirs = [ "include" ]
+}
+
 source_set("libm") {
+  all_dependent_configs = [ ":libm_config" ]
   cflags = [
     "-Wno-unused-variable",
     "-Wno-sign-compare",
     "-Wno-parentheses",
   ]
   include_dirs = [
-    "include",
     "//lib/libc/include",
   ]
   sources = [

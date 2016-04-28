@@ -5,9 +5,6 @@ source_set("ext2") {
     "io.c",
     "file.c",
   ]
-  include_dirs = [
-    "//lib/bcache/include",
-  ]
 
   deps = [
     "//lib/fs",

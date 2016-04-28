@@ -3,7 +3,6 @@ source_set("test") {
     "spifstest.c",
   ]
   include_dirs = [
-    "//external/lib/libm/include",
     "//lib/bio/include",
     "//lib/fs/include",
     "//lib/heap/include",
