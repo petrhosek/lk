@@ -119,7 +119,7 @@ gcc_toolchain("arm64") {
   cxx = "${toolprefix}g++"
 
   ar = "${toolprefix}ar"
-  ld = cxx
+  ld = "${toolprefix}ld"
   #readelf = "${toolprefix}readelf"
   #nm = "${toolprefix}nm"
 
