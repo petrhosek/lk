@@ -1,3 +1,7 @@
+assert(target_cpu == "x86" || target_cpu == "x64")
+
+import("//build/linker_script.gni")
+
 config("x86_config") {
   visibility = [ ":*" ]
   ldflags = [ "-dT", rebase_path("${root_gen_dir}/kernel.ld", root_out_dir)  ]
@@ -10,6 +14,7 @@ source_set("x86") {
     "//lib/io/include",
     "//lib/libc/include",
   ]
+  defines = kernel_defines
   sources = [
     "arch.c",
     "cache.c",
@@ -28,21 +33,18 @@ source_set("x86") {
       "64/ops.S",
     ]
 
-    deps = [
-      ":generate_kernel_linker_script",
-    ]
   }
+  deps = [
+    ":kernel_ld",
+  ]
 }
 
-# TODO(smklein): This shouldn't be x86-64 specific
-action("generate_kernel_linker_script") {
-  script = "generate_kernel_ld.py"
-  sources = [ "64/kernel.ld" ]
-  outputs = [ "${root_gen_dir}/kernel.ld" ]
-
-  args = [ "--defines" ] + kernel_defines
-  args += [
-  "--infile", rebase_path("${root_out_dir}/../../arch/x86/64/kernel.ld"),
-  "--outfile", rebase_path("${root_gen_dir}/kernel.ld")
-  ]
+linker_script("kernel_ld") {
+  if (target_cpu == "x64") {
+    infile = "32/kernel.ld"
+  } else {
+    infile = "64/kernel.ld"
+  }
+  outfile = "${root_gen_dir}/kernel.ld"
+  defines = kernel_defines
 }

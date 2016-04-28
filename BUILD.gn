@@ -5,10 +5,16 @@ import("//build/config.gni")
 executable("kernel") {
   deps = [
     "//top",
-    "//arch/x86",
     "//project:pc-x86-64-test",
     "//platform/pc"
   ]
+  if (target_cpu == "x86" || target_cpu == "x64") {
+    deps += [
+      "//arch/x86",
+    ]
+  } else if (target_cpu == "arm64") {
+    deps += [ "//arch/arm64" ]
+  }
 }
 
 group("kernel_binary") {
