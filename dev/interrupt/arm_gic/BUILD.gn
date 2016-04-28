@@ -1,6 +1,7 @@
 config("arm_gic_config") {
   visibility = [ ":*" ]
   include_dirs = [ "include" ]
+  defines = [ "WITH_DEV_INTERRUPT_ARM_GIC" ]
 }
 
 source_set("arm_gic") {

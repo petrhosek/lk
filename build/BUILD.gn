@@ -63,7 +63,7 @@ config("compiler_defaults") {
     include_dirs += [ "//arch/x86/include" ]
   } else if (target_cpu == "arm64") {
     defines = [
-      "ARM64_CPU_xxx", # TODO(phosek): figure out which should this be
+      "ARM64_CPU_CORTEX_A53",
       "ARCH_ARM64",
       "ARM_ISA_ARMV8",
       "IS_64BIT",
@@ -78,9 +78,9 @@ config("compiler_defaults") {
     if (with_smp) {
       defines += [
         "WITH_SMP=1",
-        "SMP_MAX_CPUS=",
-        "SMP_CPU_CLUSTER_SHIFT=",
-        "SMP_CPU_ID_BITS=",
+        "SMP_MAX_CPUS=4",
+        "SMP_CPU_CLUSTER_SHIFT=8",
+        "SMP_CPU_ID_BITS=24",
       ]
     } else {
       defines += [

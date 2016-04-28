@@ -34,6 +34,14 @@ source_set("arm64") {
   deps = [
     ":onesegment_ld",
   ]
+  if (with_smp) {
+    sources += [
+      "mp.c",
+    ]
+    deps += [
+      "//dev/interrupt/arm_gic",
+    ]
+  }
 }
 
 linker_script("onesegment_ld") {
