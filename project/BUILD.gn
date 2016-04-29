@@ -1,8 +1,4 @@
 group("qemu-x86-64") {
-  # embed_user_cpio = true
-  # arch = x86
-  # subarch = x86-32
-  # target = pc-x86
   deps = [
     "//app/shell",
     "//lib/debugcommands",
@@ -11,15 +7,6 @@ group("qemu-x86-64") {
 }
 
 group("qemu-arm64") {
-  # qemu-virt-a53:
-  # arch = arm64
-  # arm_cpu = cortex-a53
-  #
-  # qemu:
-  # target = qemu-virt
-  # with_linker_gc = 0
-  # modules += dev/intel_hda
-  # intel_hda_qemu_quirks = 1
   deps = [
     "//app/shell",
     "//project/virtual:test",
