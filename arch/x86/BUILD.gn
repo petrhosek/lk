@@ -1,5 +1,6 @@
 assert(target_cpu == "x86" || target_cpu == "x64")
 
+import("//build/config.gni")
 import("//build/linker_script.gni")
 
 config("x86_config") {

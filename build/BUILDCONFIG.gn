@@ -15,38 +15,6 @@ if (current_os == "") {
   current_os = target_os
 }
 
-with_smp = false
-with_kernel_vm = true
-with_cpp_support = false
-
-# TODO(smklein): Move default args to a separate file
-if (target_cpu == "x64") {
-  with_kernel_vm = true
-  with_smp = false
-  heap_implementation = "dlmalloc"
-  kernel_defines = [
-    "MEMBASE=0",
-    "KERNEL_ASPACE_BASE=0xffffff8000000000",
-    "KERNEL_ASPACE_SIZE=0x0000008000000000",
-    "KERNEL_BASE=0xffffffff80000000",
-    "KERNEL_LOAD_OFFSET=0x00200000",
-  ]
-} else if (target_cpu == "arm64") {
-  with_kernel_vm = true
-  with_smp = true
-  heap_implementation = "dlmalloc"
-  kernel_defines = [
-    "MEMBASE=0x40000000",
-    "MEMSIZE=0x08000000",
-    "KERNEL_ASPACE_BASE=0xffff000000000000",
-    "KERNEL_ASPACE_SIZE=0x0001000000000000",
-    "USER_ASPACE_BASE=0x0000000001000000",
-    "USER_ASPACE_SIZE=0x0000fffffe000000",
-    "KERNEL_BASE=0xffff000000000000",
-    "KERNEL_LOAD_OFFSET=0x10000",
-  ]
-}
-
 # All binary targets will get this list of configs by default.
 _shared_binary_target_configs = [ "//build:compiler_defaults" ]
 
@@ -60,9 +28,6 @@ set_defaults("executable") {
 set_defaults("static_library") {
   configs = _shared_binary_target_configs
 }
-set_defaults("shared_library") {
-  configs = _shared_binary_target_configs
-}
 set_defaults("source_set") {
   configs = _shared_binary_target_configs
 }
@@ -71,5 +36,7 @@ if (target_cpu == "x64") {
   host_toolchain = "//build/toolchain:x64"
 } else if (target_cpu == "arm64") {
   host_toolchain = "//build/toolchain:arm64"
+} else {
+  assert(false, "Target CPU not yet supported")
 }
 set_default_toolchain(host_toolchain)

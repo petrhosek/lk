@@ -2,12 +2,15 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
+import("//build/config.gni")
+
 config("compiler_defaults") {
   include_dirs = [ "//include" ]
   defines = [
       "LK=1",
       "LK_DEBUGLEVEL=2",
   ]
+  defines += kernel_defines
 
   cflags = [
     "-O2",
@@ -38,6 +41,7 @@ config("compiler_defaults") {
   ]
 
   if (target_cpu == "x64") {
+    include_dirs += [ "//arch/x86/include" ]
     defines += [
       "ARCH_X86_64=1",
       "IS_64BIT=1",
@@ -72,11 +76,8 @@ config("compiler_defaults") {
     cflags_c += [
       "-fno-stack-protector",
     ]
-    ldflags = [
-      "-z", "max-page-size=4096",
-    ]
-    include_dirs += [ "//arch/x86/include" ]
   } else if (target_cpu == "arm64") {
+    include_dirs += [ "//arch/arm64/include" ]
     defines += [
       "ARM64_CPU_CORTEX_A53=1",
       "ARCH_ARM64=1",
@@ -109,17 +110,16 @@ config("compiler_defaults") {
         "WITH_SMP=0",
       ]
     }
-    ldflags = [
-      "-z", "max-page-size=4096",
-    ]
-    include_dirs += [ "//arch/arm64/include" ]
   }
-
-  defines += kernel_defines
 }
 
 config("executable_ldconfig") {
   ldflags = [
     "-nostdlib"
   ]
+  if (target_cpu == "x64" || target_cpu == "arm64") {
+    ldflags += [
+      "-z", "max-page-size=4096",
+    ]
+  }
 }

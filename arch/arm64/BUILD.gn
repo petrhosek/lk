@@ -1,5 +1,6 @@
 assert(target_cpu == "arm64")
 
+import("//build/config.gni")
 import("//build/linker_script.gni")
 
 config("arm64_config") {

@@ -10,10 +10,6 @@ template("gcc_toolchain") {
     assert(defined(invoker.cxx), "gcc_toolchain() must specify a \"cxx\" value")
     assert(defined(invoker.ar), "gcc_toolchain() must specify a \"ar\" value")
     assert(defined(invoker.ld), "gcc_toolchain() must specify a \"ld\" value")
-    #assert(defined(invoker.toolchain_cpu),
-    #       "gcc_toolchain() must specify a \"toolchain_cpu\"")
-    #assert(defined(invoker.toolchain_os),
-    #       "gcc_toolchain() must specify a \"toolchain_os\"")
 
     forward_variables_from(invoker,
                            [
@@ -21,8 +17,6 @@ template("gcc_toolchain") {
                              "cxx",
                              "ar",
                              "ld",
-                             "readelf",
-                             "nm",
                            ])
 
     tool("cc") {
@@ -67,33 +61,10 @@ template("gcc_toolchain") {
       output_prefix = "lib"
     }
 
-    #tool("solink") {
-    #  soname = "{{target_output_name}}{{output_extension}}"  # e.g. "libfoo.so".
-    #  rspfile = soname + ".rsp"
-
-    #  command = "$ld -shared {{ldflags}} -o $soname -Wl,-soname=$soname @$rspfile"
-    #  rspfile_content = "-Wl,--whole-archive {{inputs}} {{solibs}} -Wl,--no-whole-archive {{libs}}"
-
-    #  description = "SOLINK $soname"
-
-    #  # Use this for {{output_extension}} expansions unless a target manually
-    #  # overrides it (in which case {{output_extension}} will be what the target
-    #  # specifies).
-    #  default_output_extension = ".so"
-
-    #  outputs = [
-    #    soname,
-    #  ]
-    #  link_output = soname
-    #  depend_output = soname
-    #  output_prefix = "lib"
-    #}
-
     tool("link") {
       outfile = "{{target_output_name}}{{output_extension}}"
       rspfile = "$outfile.rsp"
       command = "$ld {{ldflags}} -o $outfile --start-group @$rspfile --end-group {{libs}}"
-      #command = "$ld {{ldflags}} -o $outfile -Wl,--start-group @$rspfile {{solibs}} -Wl,--end-group {{libs}}"
       description = "LINK $outfile"
       rspfile_content = "{{inputs}}"
       default_output_extension = ".elf"
@@ -120,10 +91,6 @@ gcc_toolchain("arm64") {
 
   ar = "${toolprefix}ar"
   ld = "${toolprefix}ld"
-  #readelf = "${toolprefix}readelf"
-  #nm = "${toolprefix}nm"
-
-  #toolchain_cpu = "arm64"
 }
 
 gcc_toolchain("x64") {
@@ -132,8 +99,4 @@ gcc_toolchain("x64") {
 
   ar = "${toolprefix}ar"
   ld = "${toolprefix}ld"
-  #readelf = "${toolprefix}readelf"
-  #nm = "nm"
-
-  #toolchain_cpu = "x64"
 }

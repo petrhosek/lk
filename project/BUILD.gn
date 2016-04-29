@@ -1,10 +1,3 @@
-group("pc-x86-64-test") {
-  deps = [
-    "//app/shell",
-    "//project/virtual:test",
-  ]
-}
-
 group("qemu-x86-64") {
   # embed_user_cpio = true
   # arch = x86
@@ -14,8 +7,6 @@ group("qemu-x86-64") {
     "//app/shell",
     "//lib/debugcommands",
     "//project/virtual:test",
-    #"//project/virtual:user",
-    #"//project/target:pc-x86",
   ]
 }
 
@@ -34,6 +25,5 @@ group("qemu-arm64") {
     "//project/virtual:test",
     "//project/virtual:fs",
     "//project/virtual:minip",
-#    "//project/target:qemu-virt-a53",
   ]
 }
