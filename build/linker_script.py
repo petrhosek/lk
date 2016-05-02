@@ -9,13 +9,14 @@ def ConfigLdScript(defines, infile, outfile):
       line = line.replace(key, defines[key])
     outfile.write(line)
 
+
 def main(argv):
-  parser = argparse.ArgumentParser(description='Generate kernel.ld')
+  parser = argparse.ArgumentParser(description='Generate linker script')
   parser.add_argument('--defines', nargs='+', required=True)
-  parser.add_argument('--infile', nargs='?', type=argparse.FileType('r'),
-                      required=True)
-  parser.add_argument('--outfile', nargs='?', type=argparse.FileType('w'),
-                      required=True)
+  parser.add_argument('infile', nargs='?', type=argparse.FileType('r'),
+                      default=sys.stdin)
+  parser.add_argument('outfile', nargs='?', type=argparse.FileType('w'),
+                      default=sys.stdout)
   args = parser.parse_args()
 
   defines = dict()
@@ -25,6 +26,7 @@ def main(argv):
 
   ConfigLdScript(defines, args.infile, args.outfile)
   return 0
+
 
 if __name__ == '__main__':
   sys.exit(main(sys.argv))

@@ -1,6 +1,6 @@
 # This target will be built if no target is specified when invoking ninja.
 
-import("//build/config.gni")
+import("//build/objcopy.gni")
 
 executable("kernel") {
   deps = [
@@ -21,23 +21,8 @@ executable("kernel") {
   }
 }
 
-group("kernel_binary") {
-  deps = [
-    ":objcopy_kernel",
-  ]
-}
-
-action("objcopy_kernel") {
-  script = "run_bash_command.py"
-
-  inputs = [ "${root_build_dir}/kernel.elf" ]
-  outputs = [ "${root_build_dir}/kernel.bin" ]
-
-  args = [
-    "${toolprefix}objcopy", "-O", "binary",
-    rebase_path("${root_build_dir}/kernel.elf"),
-    rebase_path("${root_build_dir}/kernel.bin"),
-  ]
-
+objcopy("kernel_bin") {
+  infile = "${root_build_dir}/kernel.elf"
+  outfile = "${root_build_dir}/kernel.bin"
   deps = [ ":kernel" ]
 }

@@ -1,15 +1,18 @@
-template("linker_script") {
+import("//build/config.gni")
+
+template("objcopy") {
   assert(defined(invoker.infile), "must specify \"infile\" value")
   assert(defined(invoker.outfile), "must specify \"outfile\" value")
-  assert(defined(invoker.defines), "must specify \"defines\" value")
   forward_variables_from(invoker,
                          [
                            "infile",
                            "outfile",
-                           "defines",
                          ])
+
   action(target_name) {
-    script = "//build/linker_script.py"
+    forward_variables_from(invoker, [ "deps" ])
+
+    script = "//build/objcopy.py"
     sources = [
       infile,
     ]
@@ -18,9 +21,10 @@ template("linker_script") {
     ]
 
     args = [
-             rebase_path(infile),
-             rebase_path(outfile),
-             "--defines",
-           ] + defines
+      "--prefix",
+      toolprefix,
+      rebase_path(infile),
+      rebase_path(outfile),
+    ]
   }
 }
