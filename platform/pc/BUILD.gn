@@ -1,4 +1,11 @@
 source_set("pc") {
+  include_dirs = [
+    "include",
+    "//lib/heap/include",
+    "//lib/io/include",
+    "//lib/libc/include",
+  ]
+  cflags = [ "-Wno-pointer-to-int-cast" ]
   sources = [
     "interrupts.c",
     "platform.c",
@@ -10,14 +17,6 @@ source_set("pc") {
     "ide.c",
     "uart.c",
   ]
-
-  include_dirs = [
-    "include",
-    "//lib/heap/include",
-    "//lib/io/include",
-    "//lib/libc/include",
-  ]
-
   deps = [
     "//lib/cbuf",
   ]

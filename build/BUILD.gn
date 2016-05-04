@@ -26,9 +26,6 @@ config("compiler_defaults") {
   ]
   cflags_c = [
     "--std=gnu11",
-    "-Werror-implicit-function-declaration",
-    "-Wstrict-prototypes",
-    "-Wwrite-strings",
   ]
   cflags_cc = [
     "--std=c++11",
@@ -122,4 +119,12 @@ config("executable_ldconfig") {
       "-z", "max-page-size=4096",
     ]
   }
+}
+
+config("strict_compiler_flags") {
+  cflags_c = [
+    "-Werror-implicit-function-declaration",
+    "-Wstrict-prototypes",
+    "-Wwrite-strings",
+  ]
 }

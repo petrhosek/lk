@@ -3,6 +3,7 @@
 # found in the LICENSE file.
 
 declare_args() {
+  target_platform = ""
   with_smp = false
   with_kernel_vm = true
   with_cpp_support = false

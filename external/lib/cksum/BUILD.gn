@@ -8,9 +8,7 @@ source_set("cksum") {
   include_dirs = [
     "//lib/libc/include",
   ]
-  cflags = [
-    "-Wno-strict-prototypes",
-  ]
+  configs -= [ "//build:strict_compiler_flags" ]
   sources = [
     "adler32.c",
     "crc16.c",
