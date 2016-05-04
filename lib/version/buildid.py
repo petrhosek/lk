@@ -1,29 +1,36 @@
 #!/usr/bin/env python
 
 import argparse
+import os
+import subprocess
 import sys
 
+
 HEADER_STUB = """\
-#ifndef __%(filename)s_H
-#define __%(filename)s_H
+#ifndef __BUILDID_H
+#define __BUILDID_H
 #define %(id)s
 #endif\
 """
 
-def ConfigHeader(file):
-  #echo "#define $$d" | sed "s/=/\ /g;s/-/_/g;s/\//_/g;s/\./_/g;s/\//_/g;s/C++/CPP/g" >> $1.tmp;
-  print >>file, HEADER_STUB % { 'filename': 'x', 'id': 'x' }
+
+def ConfigHeader(script, file):
+  process = subprocess.Popen(script, stdout=subprocess.PIPE, shell=True)
+  out, err = process.communicate()
+  print >>file, HEADER_STUB % { 'id': out.strip() }
 
 
 def main(argv):
   parser = argparse.ArgumentParser(description='Generate buildid.h')
-  #parser.add_argument('infile', nargs='?', metavar='FILE', type=argparse.FileType('r'),
-  #                    default=sys.stdin)
+  parser.add_argument('--script', default='buildid.sh')
   parser.add_argument('outfile', nargs='?', type=argparse.FileType('w'),
                       default=sys.stdout)
   args = parser.parse_args()
 
-  ConfigHeader(args.outfile)
+  if not os.path.isfile(args.script):
+    parser.error("'%s' is not a valid file" % args.script)
+
+  ConfigHeader(args.script, args.outfile)
   return 0
 
 

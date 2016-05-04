@@ -1,7 +1,13 @@
 action("generate_buildid") {
   script = "buildid.py"
-  outputs = [ "${target_gen_dir}/buildid.h" ]
-  args = [ rebase_path("${target_gen_dir}/buildid.h") ]
+  outputs = [
+    "${target_gen_dir}/buildid.h",
+  ]
+  args = [
+    "--script",
+    rebase_path("//lib/version/buildid.sh"),
+    rebase_path("${target_gen_dir}/buildid.h"),
+  ]
 }
 
 source_set("version") {
