@@ -10,6 +10,7 @@ config("arm64_config") {
 
 source_set("arm64") {
   all_dependent_configs = [ ":arm64_config" ]
+  configs += [ "//kernel:enable_vm" ]
   include_dirs = [
     "//lib/heap/include",
     "//lib/io/include",
@@ -34,7 +35,6 @@ source_set("arm64") {
   }
   deps = [
     ":onesegment_ld",
-    "//kernel:vm",
   ]
   if (with_smp) {
     sources += [

@@ -10,6 +10,7 @@ config("x86_config") {
 
 source_set("x86") {
   all_dependent_configs = [ ":x86_config" ]
+  configs += [ "//kernel:enable_vm" ]
   include_dirs = [
     "//lib/heap/include",
     "//lib/io/include",
@@ -36,7 +37,6 @@ source_set("x86") {
   }
   deps = [
     ":kernel_ld",
-    "//kernel:vm",
   ]
 }
 

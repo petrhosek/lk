@@ -1,4 +1,5 @@
 source_set("platform") {
+  configs += [ "//kernel:enable_vm" ]
   include_dirs = [
     "//lib/heap/include",
     "//lib/io/include",

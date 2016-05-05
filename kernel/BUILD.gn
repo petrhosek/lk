@@ -4,15 +4,12 @@ declare_args() {
   enable_vm = true
 }
 
-config("vm_config") {
-  visibility = [ ":*" ]
+config("enable_vm") {
   if (enable_vm) {
     defines = [ "WITH_KERNEL_VM=1" ]
+  } else {
+    defines = [ "WITH_KERNEL_VM=0" ]
   }
-}
-
-group("vm") {
-  all_dependent_configs = [ ":vm_config" ]
 }
 
 source_set("kernel") {

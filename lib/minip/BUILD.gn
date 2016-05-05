@@ -4,6 +4,7 @@ config("minip_config") {
 }
 
 source_set("minip") {
+  configs += [ "//kernel:enable_vm" ]
   all_dependent_configs = [ ":minip_config" ]
   include_dirs = [
     "include",
@@ -23,7 +24,6 @@ source_set("minip") {
     "udp.c",
   ]
   deps = [
-    "//kernel:vm",
     "//lib/cbuf",
     "//lib/console",
     "//lib/iovec",

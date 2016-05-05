@@ -1,4 +1,5 @@
 source_set("pc") {
+  configs += [ "//kernel:enable_vm" ]
   include_dirs = [
     "include",
     "//lib/heap/include",
@@ -18,7 +19,6 @@ source_set("pc") {
     "uart.c",
   ]
   deps = [
-    "//kernel:vm",
     "//lib/cbuf",
   ]
 }

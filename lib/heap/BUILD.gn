@@ -10,6 +10,7 @@ config("heap_config") {
 }
 
 source_set("heap") {
+  configs += [ "//kernel:enable_vm" ]
   all_dependent_configs = [ ":heap_config" ]
   include_dirs = [
     "//lib/io/include",
@@ -24,15 +25,12 @@ source_set("heap") {
       "new.cpp",
     ]
   }
-  deps = [
-    "//kernel:vm",
-  ]
   if (heap_implementation == "dlmalloc") {
-    deps += [
+    deps = [
       "//external/lib/heap/dlmalloc",
     ]
   } else if (heap_implementation == "miniheap") {
-    deps += [
+    deps = [
       "//lib/heap/miniheap",
     ]
   } else {
