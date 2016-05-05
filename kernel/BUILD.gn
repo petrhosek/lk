@@ -1,5 +1,20 @@
 import("//build/config.gni")
 
+declare_args() {
+  enable_vm = true
+}
+
+config("vm_config") {
+  visibility = [ ":*" ]
+  if (enable_vm) {
+    defines = [ "WITH_KERNEL_VM=1" ]
+  }
+}
+
+group("vm") {
+  all_dependent_configs = [ ":vm_config" ]
+}
+
 source_set("kernel") {
   include_dirs = [
     "//lib/heap/include",
@@ -23,7 +38,7 @@ source_set("kernel") {
     "//lib/heap",
     "//lib/libc",
   ]
-  if (with_kernel_vm) {
+  if (enable_vm) {
     deps += [ "//kernel/vm" ]
   } else {
     deps += [ "//kernel/novm" ]

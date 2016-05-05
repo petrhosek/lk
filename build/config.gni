@@ -4,7 +4,6 @@
 
 declare_args() {
   with_smp = false
-  with_kernel_vm = true
   with_cpp_support = false
   kernel_defines = []
 }

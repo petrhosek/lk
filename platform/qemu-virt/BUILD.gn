@@ -9,14 +9,12 @@ source_set("qemu-virt") {
     "//lib/libc/include",
   ]
   defines = kernel_defines
-
   sources = [
     "debug.c",
     "platform.c",
     "secondary_boot.S",
     "uart.c",
   ]
-
   deps = [
     "//lib/cbuf",
     "//lib/console",

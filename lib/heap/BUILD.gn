@@ -24,12 +24,15 @@ source_set("heap") {
       "new.cpp",
     ]
   }
+  deps = [
+    "//kernel:vm",
+  ]
   if (heap_implementation == "dlmalloc") {
-    deps = [
+    deps += [
       "//external/lib/heap/dlmalloc",
     ]
   } else if (heap_implementation == "miniheap") {
-    deps = [
+    deps += [
       "//lib/heap/miniheap",
     ]
   } else {

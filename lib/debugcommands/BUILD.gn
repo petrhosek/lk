@@ -8,6 +8,7 @@ source_set("debugcommands") {
     "debugcommands.c",
   ]
   deps = [
+    "//kernel:vm",
     "//lib/debug",
     "//lib/console",
   ]

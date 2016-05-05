@@ -33,10 +33,10 @@ source_set("x86") {
       "64/mmu.c",
       "64/ops.S",
     ]
-
   }
   deps = [
     ":kernel_ld",
+    "//kernel:vm",
   ]
 }
 

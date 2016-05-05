@@ -23,6 +23,7 @@ source_set("minip") {
     "udp.c",
   ]
   deps = [
+    "//kernel:vm",
     "//lib/cbuf",
     "//lib/console",
     "//lib/iovec",

@@ -13,4 +13,7 @@ source_set("virtio") {
   sources = [
     "virtio.c"
   ]
+  deps = [
+    "//kernel:vm",
+  ]
 }

@@ -53,11 +53,6 @@ config("compiler_defaults") {
       "TARGET=\"pc-x86\"",
       "X86_WITH_FPU",
     ]
-    if (with_kernel_vm) {
-      defines += [
-        "WITH_KERNEL_VM=1",
-      ]
-    }
     if (with_smp) {
       defines += [
         "WITH_SMP=1",
@@ -94,11 +89,6 @@ config("compiler_defaults") {
       "PROJECT=\"qemu-virt-a53-test\"",
       "TARGET=\"qemu-virt\"",
     ]
-    if (with_kernel_vm) {
-      defines += [
-        "WITH_KERNEL_VM=1",
-      ]
-    }
     if (with_smp) {
       defines += [
         "WITH_SMP=1",
