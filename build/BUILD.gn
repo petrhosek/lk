@@ -8,8 +8,12 @@ config("compiler_defaults") {
   include_dirs = [ "//include" ]
   defines = [
       "LK=1",
-      "LK_DEBUGLEVEL=2",
   ]
+  if (is_debug) {
+    defines += [
+      "LK_DEBUGLEVEL=${debug_level}",
+    ]
+  }
   defines += kernel_defines
 
   cflags = [

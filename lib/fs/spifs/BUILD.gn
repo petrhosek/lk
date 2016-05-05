@@ -1,8 +1,12 @@
 source_set("spifs") {
+  if (!is_debug) {
+    cflags = [
+      "-Wno-unused-variable",
+    ]
+  }
   sources = [
     "spifs.c",
   ]
-
   deps = [
     "//lib/fs",
     "//external/lib/cksum",

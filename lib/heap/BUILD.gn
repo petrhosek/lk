@@ -1,5 +1,9 @@
 import("//build/config.gni")
 
+declare_args() {
+  heap_implementation = "miniheap"
+}
+
 config("heap_config") {
   visibility = [ ":*" ]
   include_dirs = [ "include" ]
@@ -24,9 +28,11 @@ source_set("heap") {
     deps = [
       "//external/lib/heap/dlmalloc",
     ]
-  } else {
+  } else if (heap_implementation == "miniheap") {
     deps = [
       "//lib/heap/miniheap",
     ]
+  } else {
+    assert(false, "Unsupported heap implementation")
   }
 }
