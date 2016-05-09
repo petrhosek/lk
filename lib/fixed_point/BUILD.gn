@@ -1,0 +1,11 @@
+config("fixed_point_config") {
+  visibility = [ ":*" ]
+  include_dirs = [ "include" ]
+}
+
+source_set("fixed_point") {
+  all_dependent_configs = [ ":fixed_point_config" ]
+  sources = [
+    "fixed_point.c"
+  ]
+}

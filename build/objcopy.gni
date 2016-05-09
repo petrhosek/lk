@@ -1,0 +1,30 @@
+import("//build/config.gni")
+
+template("objcopy") {
+  assert(defined(invoker.infile), "must specify \"infile\" value")
+  assert(defined(invoker.outfile), "must specify \"outfile\" value")
+  forward_variables_from(invoker,
+                         [
+                           "infile",
+                           "outfile",
+                         ])
+
+  action(target_name) {
+    forward_variables_from(invoker, [ "deps" ])
+
+    script = "//build/objcopy.py"
+    sources = [
+      infile,
+    ]
+    outputs = [
+      outfile,
+    ]
+
+    args = [
+      "--prefix",
+      toolprefix,
+      rebase_path(infile),
+      rebase_path(outfile),
+    ]
+  }
+}

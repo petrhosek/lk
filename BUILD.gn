@@ -1,0 +1,28 @@
+# This target will be built if no target is specified when invoking ninja.
+
+import("//build/objcopy.gni")
+
+executable("kernel") {
+  deps = [
+    "//top",
+  ]
+  if (target_cpu == "x64") {
+    deps += [
+      "//arch/x86",
+      "//project:qemu-x86-64",
+      "//platform/pc",
+    ]
+  } else if (target_cpu == "arm64") {
+    deps += [
+      "//arch/arm64",
+      "//project:qemu-arm64",
+      "//platform/qemu-virt",
+    ]
+  }
+}
+
+objcopy("kernel_bin") {
+  infile = "${root_build_dir}/kernel.elf"
+  outfile = "${root_build_dir}/kernel.bin"
+  deps = [ ":kernel" ]
+}

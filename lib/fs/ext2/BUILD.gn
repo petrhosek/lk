@@ -1,0 +1,14 @@
+source_set("ext2") {
+  cflags = [ "-Wno-sign-compare" ]
+  sources = [
+    "ext2.c",
+    "dir.c",
+    "io.c",
+    "file.c",
+  ]
+  deps = [
+    "//lib/fs",
+    "//lib/bcache",
+    "//lib/bio",
+  ]
+}

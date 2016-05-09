@@ -1,0 +1,24 @@
+source_set("pc") {
+  configs += [ "//kernel:enable_vm" ]
+  include_dirs = [
+    "include",
+    "//lib/heap/include",
+    "//lib/io/include",
+    "//lib/libc/include",
+  ]
+  cflags = [ "-Wno-pointer-to-int-cast" ]
+  sources = [
+    "interrupts.c",
+    "platform.c",
+    "timer.c",
+    "debug.c",
+    "console.c",
+    "keyboard.c",
+    "pci.c",
+    "ide.c",
+    "uart.c",
+  ]
+  deps = [
+    "//lib/cbuf",
+  ]
+}

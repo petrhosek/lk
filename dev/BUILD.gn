@@ -1,0 +1,26 @@
+config("dev_config") {
+  visibility = [ ":*" ]
+  ldflags = [
+    "-T", rebase_path("devices.ld", root_out_dir),
+    "-T", rebase_path("drivers.ld", root_out_dir),
+  ]
+}
+
+source_set("dev") {
+  all_dependent_configs = [ ":dev_config" ]
+  include_dirs = [
+    "//lib/heap/include",
+    "//lib/io/include",
+    "//lib/libc/include"
+  ]
+  sources = [
+    "dev.c",
+    "driver.c",
+    "class/block_api.c",
+    "class/i2c_api.c",
+    "class/spi_api.c",
+    "class/uart_api.c",
+    "class/fb_api.c",
+    "class/netif_api.c",
+  ]
+}

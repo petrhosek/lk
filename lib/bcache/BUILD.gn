@@ -1,0 +1,15 @@
+config("bcache_config") {
+  visibility = [ ":*" ]
+  include_dirs = [ "include" ]
+}
+
+source_set("bcache") {
+  all_dependent_configs = [ ":bcache_config" ]
+  sources = [
+    "bcache.c",
+  ]
+
+  deps = [
+    "//lib/bio",
+  ]
+}

@@ -1,0 +1,16 @@
+group("qemu-x86-64") {
+  deps = [
+    "//app/shell",
+    "//lib/debugcommands",
+    "//project/virtual:test",
+  ]
+}
+
+group("qemu-arm64") {
+  deps = [
+    "//app/shell",
+    "//project/virtual:test",
+    "//project/virtual:fs",
+    "//project/virtual:minip",
+  ]
+}

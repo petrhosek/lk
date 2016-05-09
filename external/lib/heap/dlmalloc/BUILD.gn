@@ -1,0 +1,17 @@
+config("dlmalloc_config") {
+  visibility = [ ":*" ]
+  include_dirs = [ "include" ]
+  defines = [ "WITH_LIB_HEAP_DLMALLOC" ]
+}
+
+source_set("dlmalloc") {
+  all_dependent_configs = [ ":dlmalloc_config" ]
+  include_dirs = [
+    "//lib/heap/include",
+    "//lib/io/include",
+    "//lib/libc/include",
+  ]
+  sources = [
+    "dlmalloc.c",
+  ]
+}

@@ -1,0 +1,16 @@
+source_set("test") {
+  cflags =  [ "-Wno-format" ]
+  include_dirs = [
+    "//lib/bio/include",
+    "//lib/fs/include",
+    "//lib/heap/include",
+    "//lib/io/include",
+    "//lib/libc/include",
+  ]
+  sources = [
+    "spifstest.c",
+  ]
+  deps = [
+    "//external/lib/libm",
+  ]
+}

@@ -1,0 +1,26 @@
+source_set("tests") {
+  cflags = [
+    "-Wno-format",
+    "-fno-builtin",
+  ]
+  include_dirs = [
+    "include",
+    "//lib/heap/include",
+    "//lib/io/include",
+    "//lib/libc/include",
+  ]
+  sources = [
+    "benchmarks.c",
+    "cache_tests.c",
+    "clock_tests.c",
+    "fibo.c",
+    "float.c",
+    "float_instructions.S",
+    "float_test_vec.c",
+    "mem_tests.c",
+    "printf_tests.c",
+    "tests.c",
+    "thread_tests.c",
+    "port_tests.c",
+  ]
+}

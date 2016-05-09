@@ -1,0 +1,39 @@
+import("//build/config.gni")
+
+declare_args() {
+  heap_implementation = "miniheap"
+}
+
+config("heap_config") {
+  visibility = [ ":*" ]
+  include_dirs = [ "include" ]
+}
+
+source_set("heap") {
+  configs += [ "//kernel:enable_vm" ]
+  all_dependent_configs = [ ":heap_config" ]
+  include_dirs = [
+    "//lib/io/include",
+    "//lib/libc/include"
+  ]
+  sources = [
+    "heap_wrapper.c",
+    "page_alloc.c",
+  ]
+  if (with_cpp_support) {
+    sources += [
+      "new.cpp",
+    ]
+  }
+  if (heap_implementation == "dlmalloc") {
+    deps = [
+      "//external/lib/heap/dlmalloc",
+    ]
+  } else if (heap_implementation == "miniheap") {
+    deps = [
+      "//lib/heap/miniheap",
+    ]
+  } else {
+    assert(false, "Unsupported heap implementation")
+  }
+}

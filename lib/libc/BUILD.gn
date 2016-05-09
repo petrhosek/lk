@@ -1,0 +1,34 @@
+import("//build/config.gni")
+
+config("libc_config") {
+  visibility = [ ":*" ]
+  include_dirs = [ "include" ]
+}
+
+source_set("libc") {
+  all_dependent_configs = [ ":libc_config" ]
+  sources = [
+    "atoi.c",
+    "bsearch.c",
+    "ctype.c",
+    "errno.c",
+    "printf.c",
+    "rand.c",
+    "strtol.c",
+    "strtoll.c",
+    "stdio.c",
+    "qsort.c",
+  ]
+  if (with_cpp_support) {
+    sources += [
+      "eabi.c",
+      "atexit.c",
+      "pure_virtual.cpp",
+    ]
+  }
+  deps = [
+    "//lib/libc/string",
+    "//lib/heap",
+    "//lib/io",
+  ]
+}

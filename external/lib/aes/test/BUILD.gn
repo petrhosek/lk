@@ -1,0 +1,17 @@
+source_set("test") {
+  sources = [
+    "aes_test.c",
+  ]
+  include_dirs = [
+    "//external/lib/aes/include",
+    "//lib/heap/include",
+    "//lib/io/include",
+    "//lib/libc/include",
+  ]
+
+  if (target_cpu == "x64") {
+    include_dirs += [
+      "//lib/heap/include",
+    ]
+  }
+}

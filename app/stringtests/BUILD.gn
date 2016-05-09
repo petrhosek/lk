@@ -1,0 +1,10 @@
+source_set("stringtests") {
+  include_dirs = [
+    "//lib/heap/include",
+    "//lib/io/include",
+    "//lib/libc/include",
+  ]
+  sources = [
+    "string_tests.c",
+  ]
+}

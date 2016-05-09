@@ -1,0 +1,102 @@
+# Copyright 2016 The Chromium Authors. All rights reserved.
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+import("//build/config.gni")
+
+template("gcc_toolchain") {
+  toolchain(target_name) {
+    assert(defined(invoker.cc), "gcc_toolchain() must specify a \"cc\" value")
+    assert(defined(invoker.cxx), "gcc_toolchain() must specify a \"cxx\" value")
+    assert(defined(invoker.ar), "gcc_toolchain() must specify a \"ar\" value")
+    assert(defined(invoker.ld), "gcc_toolchain() must specify a \"ld\" value")
+
+    forward_variables_from(invoker,
+                           [
+                             "cc",
+                             "cxx",
+                             "ar",
+                             "ld",
+                           ])
+
+    tool("cc") {
+      depfile = "{{output}}.d"
+      command = "$cc -MMD -MF $depfile {{defines}} {{include_dirs}} {{cflags}} {{cflags_c}} -c {{source}} -o {{output}}"
+      depsformat = "gcc"
+      description = "CC {{output}}"
+      outputs = [
+        "{{source_out_dir}}/{{target_output_name}}.{{source_name_part}}.o",
+      ]
+    }
+
+    tool("cxx") {
+      depfile = "{{output}}.d"
+      command = "$cxx -MMD -MF $depfile {{defines}} {{include_dirs}} {{cflags}} {{cflags_cc}} -c {{source}} -o {{output}}"
+      depsformat = "gcc"
+      description = "CXX {{output}}"
+      outputs = [
+        "{{source_out_dir}}/{{target_output_name}}.{{source_name_part}}.o",
+      ]
+    }
+
+    tool("asm") {
+      depfile = "{{output}}.d"
+      command = "$cc -MMD -MF $depfile {{defines}} {{include_dirs}} {{asmflags}} -c {{source}} -o {{output}}"
+      depsformat = "gcc"
+      description = "ASM {{output}}"
+      outputs = [
+        "{{source_out_dir}}/{{source_name_part}}.o",
+      ]
+    }
+
+    tool("alink") {
+      rspfile = "{{output}}.rsp"
+      command = "rm -f {{output}} && $ar rcs {{output}} @$rspfile"
+      description = "AR {{target_output_name}}{{output_extension}}"
+      rspfile_content = "{{inputs}}"
+      outputs = [
+        "{{target_out_dir}}/{{target_output_name}}{{output_extension}}",
+      ]
+      default_output_extension = ".a"
+      output_prefix = "lib"
+    }
+
+    tool("link") {
+      outfile = "{{target_output_name}}{{output_extension}}"
+      rspfile = "$outfile.rsp"
+      command = "$ld {{ldflags}} -o $outfile --start-group @$rspfile --end-group {{libs}}"
+      description = "LINK $outfile"
+      rspfile_content = "{{inputs}}"
+      default_output_extension = ".elf"
+      outputs = [
+        outfile,
+      ]
+    }
+
+    tool("stamp") {
+      command = "touch {{output}}"
+      description = "STAMP {{output}}"
+    }
+
+    tool("copy") {
+      command = "cp -af {{source}} {{output}}"
+      description = "COPY {{source}} {{output}}"
+    }
+  }
+}
+
+gcc_toolchain("arm64") {
+  cc = "${toolprefix}gcc"
+  cxx = "${toolprefix}g++"
+
+  ar = "${toolprefix}ar"
+  ld = "${toolprefix}ld"
+}
+
+gcc_toolchain("x64") {
+  cc = "${toolprefix}gcc"
+  cxx = "${toolprefix}g++"
+
+  ar = "${toolprefix}ar"
+  ld = "${toolprefix}ld"
+}

@@ -1,0 +1,21 @@
+config("cksum_config") {
+  visibility = [ ":*" ]
+  include_dirs = [ "include" ]
+}
+
+source_set("cksum") {
+  all_dependent_configs = [ ":cksum_config" ]
+  include_dirs = [
+    "//lib/libc/include",
+  ]
+  configs -= [ "//build:strict_compiler_flags" ]
+  sources = [
+    "adler32.c",
+    "crc16.c",
+    "crc32.c",
+    "debug.c",
+  ]
+  deps = [
+    "//lib/console",
+  ]
+}

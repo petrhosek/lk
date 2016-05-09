@@ -1,0 +1,11 @@
+source_set("novm") {
+  include_dirs = [
+    "//lib/heap/include",
+    "//lib/io/include",
+    "//lib/libc/include",
+  ]
+  sources = [ "novm.c" ]
+  deps = [
+    "//lib/console",
+  ]
+}

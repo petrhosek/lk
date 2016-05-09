@@ -1,0 +1,9 @@
+source_set("iovec") {
+  include_dirs = [
+    "//lib/io/include",
+    "//lib/libc/include",
+  ]
+  sources = [
+    "iovec.c",
+  ]
+}

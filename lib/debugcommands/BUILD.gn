@@ -1,0 +1,15 @@
+source_set("debugcommands") {
+  configs += [ "//kernel:enable_vm" ]
+  include_dirs = [
+    "//lib/heap/include",
+    "//lib/io/include",
+    "//lib/libc/include",
+  ]
+  sources = [
+    "debugcommands.c",
+  ]
+  deps = [
+    "//lib/debug",
+    "//lib/console",
+  ]
+}

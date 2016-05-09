@@ -1,0 +1,53 @@
+assert(target_cpu == "arm64")
+
+import("//build/config.gni")
+import("//build/linker_script.gni")
+
+config("arm64_config") {
+  visibility = [ ":*" ]
+  ldflags = [ "-dT", rebase_path("${root_gen_dir}/system-onesegment.ld", root_out_dir) ]
+}
+
+source_set("arm64") {
+  all_dependent_configs = [ ":arm64_config" ]
+  configs += [ "//kernel:enable_vm" ]
+  include_dirs = [
+    "//lib/heap/include",
+    "//lib/io/include",
+    "//lib/libc/include",
+  ]
+  defines = kernel_defines
+  sources = [
+    "arch.c",
+    "asm.S",
+    "exceptions.S",
+    "exceptions_c.c",
+    "fpu.c",
+    "thread.c",
+    "spinlock.S",
+    "start.S",
+    "cache-ops.S",
+  ]
+  if (with_kernel_vm) {
+    sources += [
+      "mmu.c",
+    ]
+  }
+  deps = [
+    ":onesegment_ld",
+  ]
+  if (with_smp) {
+    sources += [
+      "mp.c",
+    ]
+    deps += [
+      "//dev/interrupt/arm_gic",
+    ]
+  }
+}
+
+linker_script("onesegment_ld") {
+  infile = "system-onesegment.ld"
+  outfile = "${root_gen_dir}/system-onesegment.ld"
+  defines = kernel_defines
+}

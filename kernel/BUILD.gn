@@ -1,0 +1,43 @@
+import("//build/config.gni")
+
+declare_args() {
+  enable_vm = true
+}
+
+config("enable_vm") {
+  if (enable_vm) {
+    defines = [ "WITH_KERNEL_VM=1" ]
+  } else {
+    defines = [ "WITH_KERNEL_VM=0" ]
+  }
+}
+
+source_set("kernel") {
+  include_dirs = [
+    "//lib/heap/include",
+    "//lib/io/include",
+    "//lib/libc/include",
+  ]
+  sources = [
+    "debug.c",
+    "event.c",
+    "init.c",
+    "mutex.c",
+    "thread.c",
+    "timer.c",
+    "semaphore.c",
+    "mp.c",
+    "port.c",
+  ]
+  deps = [
+    "//lib/debug",
+    "//lib/console",
+    "//lib/heap",
+    "//lib/libc",
+  ]
+  if (enable_vm) {
+    deps += [ "//kernel/vm" ]
+  } else {
+    deps += [ "//kernel/novm" ]
+  }
+}

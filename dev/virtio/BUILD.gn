@@ -1,0 +1,19 @@
+config("virtio_config") {
+  visibility = [ ":*" ]
+  include_dirs = [ "include" ]
+}
+
+source_set("virtio") {
+  all_dependent_configs = [ ":virtio_config" ]
+  include_dirs = [
+    "//lib/heap/include",
+    "//lib/io/include",
+    "//lib/libc/include",
+  ]
+  sources = [
+    "virtio.c"
+  ]
+  deps = [
+    "//kernel:vm",
+  ]
+}

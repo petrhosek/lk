@@ -1,0 +1,20 @@
+config("net_config") {
+  visibility = [ ":*" ]
+  include_dirs = [ "include" ]
+}
+
+source_set("net") {
+  all_dependent_configs = [ ":net_config" ]
+  include_dirs = [
+    "//lib/heap/include",
+    "//lib/io/include",
+    "//lib/libc/include",
+  ]
+  sources = [
+    "virtio-net.c",
+  ]
+  deps = [
+    "//dev/virtio",
+    "//lib/minip",
+  ]
+}

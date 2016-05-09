@@ -1,0 +1,15 @@
+config("tftp_config") {
+  visibility = [ ":*" ]
+  include_dirs = [ "include" ]
+}
+
+source_set("tftp") {
+  all_dependent_configs = [ ":tftp_config" ]
+  sources = [
+    "tftp.c",
+  ]
+
+  deps = [
+    "//lib/minip",
+  ]
+}

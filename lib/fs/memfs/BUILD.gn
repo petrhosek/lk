@@ -1,0 +1,5 @@
+source_set("memfs") {
+  cflags = [ "-Wno-sign-compare" ]
+  sources = [ "memfs.c" ]
+  deps = [ "//lib/fs" ]
+}

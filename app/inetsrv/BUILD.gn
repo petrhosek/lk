@@ -1,0 +1,11 @@
+source_set("inetsrv") {
+  sources = [
+    "inetsrv.c",
+  ]
+
+  deps = [
+    "//external/lib/cksum",
+    "//lib/minip",
+    "//lib/tftp",
+  ]
+}

@@ -1,0 +1,13 @@
+source_set("platform") {
+  configs += [ "//kernel:enable_vm" ]
+  include_dirs = [
+    "//lib/heap/include",
+    "//lib/io/include",
+    "//lib/libc/include",
+  ]
+  sources = [
+    "debug.c",
+    "init.c",
+    "power.c"
+  ]
+}
