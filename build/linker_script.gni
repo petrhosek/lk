@@ -9,7 +9,7 @@ template("linker_script") {
                            "defines",
                          ])
   action(target_name) {
-    script = "//build/linker_script.py"
+    script = "//build/linker_script.sh"
     sources = [
       infile,
     ]
@@ -20,7 +20,6 @@ template("linker_script") {
     args = [
              rebase_path(infile),
              rebase_path(outfile),
-             "--defines",
            ] + defines
   }
 }

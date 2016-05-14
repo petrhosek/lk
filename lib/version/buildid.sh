@@ -7,4 +7,11 @@ chr () {
 b36 () {
     if [ $1 -le 9 ]; then echo $1; else chr $((0x41 + $1 - 10)); fi
 }
-printf '%c%c%c%c%c\n' `chr $((0x41 + $BYR - 2011))` `b36 $BMON` `b36 $BDOM` `b36 $BHR` `b36 $(($BMIN/2))`
+id=$(printf '%c%c%c%c%c\n' `chr $((0x41 + $BYR - 2011))` `b36 $BMON` `b36 $BDOM` `b36 $BHR` `b36 $(($BMIN/2))`)
+
+cat >$1 <<END
+#ifndef __BUILDID_H
+#define __BUILDID_H
+#define ${id}
+#endif
+END
